@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        BcardBase db = new BcardBase(@"Data Source=SANIAPC\SQLEXPRESS;Initial Catalog=BcardBase;Integrated Security=True");
+        BcardBase db = new BcardBase(@"Data Source=.\SQLEXPRESS;Initial Catalog=BcardBase;Integrated Security=True");
         public IQueryable<Bcard> bCards;
         public IQueryable<Manager> Managers;
 

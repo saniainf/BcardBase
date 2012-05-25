@@ -12,7 +12,7 @@ namespace baseInOut
 {
     public partial class Form1 : Form
     {
-        BlackBox db = new BlackBox(@"Data Source=SANIAPC\SQLEXPRESS;Initial Catalog=BlackBox;Integrated Security=True");
+        BlackBox db = new BlackBox(@"Data Source=.\SQLEXPRESS;Initial Catalog=BlackBox;Integrated Security=True");
 
         IQueryable<Box1> boxQ; // реплика таблицы Box1
 
