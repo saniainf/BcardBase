@@ -1,0 +1,3 @@
+sqlmetal /server:.\SQLExpress /database:BlackBox /namespace:bbox /code:BlackBox.cs /pluralize /functions /sprocs /views
+
+sqlmetal /server:.\SQLExpress /database:BcardBase /namespace:bcard /code:BcardBase.cs /pluralize /functions /sprocs /views
