@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using vizit;
+
+namespace WindowsFormsApplication1
+{
+    public partial class Form5 : Form
+    {
+        public Form5(IQueryable<Manager> managers)
+        {
+            InitializeComponent();
+
+            var Tst = from c in managers
+                      select new { Name = c.Name };
+            dataGridView1.DataSource = Tst;
+
+
+        }
+    }
+}
