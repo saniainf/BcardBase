@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using vizit;
+using bcard;
 
 namespace WindowsFormsApplication1
 {
@@ -17,7 +17,7 @@ namespace WindowsFormsApplication1
             InitializeComponent();
 
             var Tst = from c in managers
-                      select new { Name = c.Name };
+                      select new { Name = c.Fname };
             dataGridView1.DataSource = Tst;
 
 

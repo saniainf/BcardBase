@@ -6,22 +6,22 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using vizit;
+using bcard;
 
 namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        Vizitki db = new Vizitki(@"Data Source=SANIAPC\SQLEXPRESS;Initial Catalog=Vizitki;Integrated Security=True");
-        public IQueryable<Vizitki1> viz;
-        public IQueryable<Manager> managers;
+        BcardBase db = new BcardBase(@"Data Source=SANIAPC\SQLEXPRESS;Initial Catalog=BcardBase;Integrated Security=True");
+        public IQueryable<Bcard> bCards;
+        public IQueryable<Manager> Managers;
 
         public Form1()
         {
             InitializeComponent();
 
-            viz = db.Vizitkis;
-            managers = db.Managers;
+            bCards = db.Bcards;
+            Managers = db.Managers;
             reloadAll();
         }
 
@@ -43,7 +43,7 @@ namespace WindowsFormsApplication1
 
         public void reloadAll()
         {
-            dataGridView1.DataSource = viz;
+            dataGridView1.DataSource = bCards;
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace WindowsFormsApplication1
 
         void ChangeManagersForms()
         {
-            Form2 f2 = new Form2(managers);
+            Form2 f2 = new Form2(Managers);
             f2.ShowInTaskbar = false;
             f2.Owner = this;
             f2.Show();
@@ -72,7 +72,7 @@ namespace WindowsFormsApplication1
 
         private void первыйToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form5 f2 = new Form5(managers);
+            Form5 f2 = new Form5(Managers);
             f2.ShowInTaskbar = false;
             f2.Owner = this;
             f2.Show();
@@ -82,7 +82,7 @@ namespace WindowsFormsApplication1
         {
             Manager vz = new Manager
             {
-                Name  = "asdasd",
+                Fname  = "asdasd",
                 Color = null
             };
 
