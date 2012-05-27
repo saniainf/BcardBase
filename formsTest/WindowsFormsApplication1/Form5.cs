@@ -19,8 +19,6 @@ namespace WindowsFormsApplication1
             var Tst = from c in managers
                       select new { Name = c.Fname };
             dataGridView1.DataSource = Tst;
-
-
         }
     }
 }

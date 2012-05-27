@@ -30,8 +30,10 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1 frm = (Form1)this.Owner;
-            frm.ChangeBottomInfo(listBox1.SelectedItem.ToString());
+            //Form1 frm = (Form1)this.Owner;
+            //frm.ChangeBottomInfo(listBox1.SelectedItem.ToString());
+            // событие
+            SelectUser.EventHandler("test");
 
             Close();
         }

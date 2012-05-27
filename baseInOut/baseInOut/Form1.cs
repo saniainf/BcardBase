@@ -49,7 +49,7 @@ namespace baseInOut
         void LoadTable()
         {
             boxQ = from b in db.Box1s // запроc для реплики
-                   //where b.PKey > 5 // работает
+                   where b.PTxt == "test" // работает
                    select b;
 
             var datagv = from dgv in boxQ
@@ -113,8 +113,10 @@ namespace baseInOut
         // test
         private void button3_Click(object sender, EventArgs e)
         {
-            int i = dataGridView1.Rows.GetFirstRow(DataGridViewElementStates.Selected);
-            textBox4.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            Form2 f2 = new Form2(boxQ);
+            f2.ShowInTaskbar = false;
+            f2.Owner = this;
+            f2.Show();
         }
     }
 }

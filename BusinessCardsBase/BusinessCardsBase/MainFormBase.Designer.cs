@@ -104,6 +104,7 @@
             this.menuStripOptionsChangeUser.Name = "menuStripOptionsChangeUser";
             this.menuStripOptionsChangeUser.Size = new System.Drawing.Size(203, 22);
             this.menuStripOptionsChangeUser.Text = "Сменить пользователя";
+            this.menuStripOptionsChangeUser.Click += new System.EventHandler(this.menuStripOptionsChangeUser_Click);
             // 
             // menuStripOptionsProgramSettings
             // 

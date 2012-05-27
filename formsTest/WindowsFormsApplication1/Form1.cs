@@ -23,6 +23,9 @@ namespace WindowsFormsApplication1
             bCards = db.Bcards;
             Managers = db.Managers;
             reloadAll();
+
+            // Добавляем обработчик события
+            SelectUser.EventHandler += new SelectUser.selectUserEvent(this.userSelect);
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -82,13 +85,18 @@ namespace WindowsFormsApplication1
         {
             Manager vz = new Manager
             {
-                Fname  = "asdasd",
+                Fname = "asdasd",
                 Color = null
             };
 
             db.Managers.InsertOnSubmit(vz);
 
             db.SubmitChanges();
+        }
+
+        void userSelect(string name)
+        {
+            toolStripStatusLabel2.Text = name;
         }
     }
 }

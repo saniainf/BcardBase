@@ -18,4 +18,10 @@ namespace WindowsFormsApplication1
             Application.Run(new Form1());
         }
     }
+
+    public static class SelectUser
+    {
+        public delegate void selectUserEvent(string name); //делегат
+        public static selectUserEvent EventHandler; // экземпляр делегата, сигнатура void nmethod (string volue)
+    }
 }
