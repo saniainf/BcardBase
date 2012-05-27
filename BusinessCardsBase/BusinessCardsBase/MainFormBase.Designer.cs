@@ -83,6 +83,7 @@
             this.menuStripServiceMangerBase.Name = "menuStripServiceMangerBase";
             this.menuStripServiceMangerBase.Size = new System.Drawing.Size(170, 22);
             this.menuStripServiceMangerBase.Text = "База менеджеров";
+            this.menuStripServiceMangerBase.Click += new System.EventHandler(this.menuStripServiceMangerBase_Click);
             // 
             // menuStripServicesExit
             // 

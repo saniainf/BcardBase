@@ -22,14 +22,22 @@ namespace BusinessCardsBase
 
         public MainFormBase()
         {
-            PassingDataSupport.eventHandler += new PassingDataSupport.selectUserEvent(this.changeUser); // подписаться на событие select user
-            PassingDataSupport.eventReload += new System.EventHandler(this.testEvent);
+            PassingDataSupport.eventSelectUser += new PassingDataSupport.selectUserEvent(this.changeUser); // подписаться на событие select user
+            PassingDataSupport.eventReload += new System.EventHandler(this.loadDataTable); // подписка на загрузку таблицы
             InitializeComponent();
         }
 
         #endregion
 
         #region event menuStrip
+
+        private void menuStripServiceMangerBase_Click(object sender, EventArgs e)
+        {
+            frmBaseManagers frmBM = new frmBaseManagers();
+            frmBM.ShowInTaskbar = false;
+            frmBM.Owner = this;
+            frmBM.Show();
+        }
 
         private void menuStripOptionsChangeUser_Click(object sender, EventArgs e)
         {
@@ -53,7 +61,7 @@ namespace BusinessCardsBase
             statusStripLbUserSelect.Text = name;
         }
 
-        void testEvent(object sender, EventArgs e)
+        void loadDataTable(object sender, EventArgs e)
         {
             statusStripLbUserSelect.Text = "ok";
         }

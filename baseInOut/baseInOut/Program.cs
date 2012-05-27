@@ -17,5 +17,12 @@ namespace baseInOut
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
+
+    }
+
+    public static class SelectUser
+    {
+        public delegate void selectUserEvent(string name); //делегат
+        public static selectUserEvent EventHandler; // экземпляр делегата, сигнатура void nmethod (string volue)
     }
 }

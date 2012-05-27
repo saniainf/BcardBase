@@ -34,7 +34,7 @@ namespace BusinessCardsBase
         /// <summary>
         /// событие "выбор пользователя"
         /// </summary>
-        public static selectUserEvent eventHandler;
+        public static selectUserEvent eventSelectUser;
 
         public static EventHandler eventReload;
     }

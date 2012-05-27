@@ -48,9 +48,11 @@ namespace baseInOut
         // загрузка таблицы
         void LoadTable()
         {
-            boxQ = from b in db.Box1s // запроc для реплики
-                   where b.PTxt == "test" // работает
-                   select b;
+            //boxQ = from b in db.Box1s // запроc для реплики
+            //       //where b.PTxt == "test" // работает
+            //       select b;
+
+            boxQ = db.Box1s;
 
             var datagv = from dgv in boxQ
                          select new { text = dgv.PTxt, number = dgv.PInt, key = dgv.PKey }; // запрос для datagridview
@@ -113,7 +115,7 @@ namespace baseInOut
         // test
         private void button3_Click(object sender, EventArgs e)
         {
-            Form2 f2 = new Form2(boxQ);
+            Form2 f2 = new Form2(db);
             f2.ShowInTaskbar = false;
             f2.Owner = this;
             f2.Show();

@@ -18,12 +18,12 @@ namespace BusinessCardsBase
 
         private void btSelect_Click(object sender, EventArgs e)
         {
-            PassingDataSupport.eventHandler("test"); // вызвать событие "выбор пользователя"
+            PassingDataSupport.eventSelectUser("test"); // вызвать событие "выбор пользователя"
         }
 
         private void btCancel_Click(object sender, EventArgs e)
         {
-            PassingDataSupport.eventReload(this, null);
+            PassingDataSupport.eventReload(this, null); // событие загрузки таблицы
         }
     }
 }

@@ -48,6 +48,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BcardBase.cs" />
+    <Compile Include="frmBaseManagers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBaseManagers.Designer.cs">
+      <DependentUpon>frmBaseManagers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNewManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNewManager.Designer.cs">
+      <DependentUpon>frmNewManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUserSelect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +74,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmBaseManagers.resx">
+      <DependentUpon>frmBaseManagers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNewManager.resx">
+      <DependentUpon>frmNewManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmUserSelect.resx">
       <DependentUpon>frmUserSelect.cs</DependentUpon>
     </EmbeddedResource>

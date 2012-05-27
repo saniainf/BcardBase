@@ -20,5 +20,12 @@ namespace WindowsFormsApplication1
                       select new { Name = c.Fname };
             dataGridView1.DataSource = Tst;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            addManager fadd = new addManager();
+            fadd.ShowInTaskbar = false;
+            fadd.ShowDialog(this);
+        }
     }
 }
