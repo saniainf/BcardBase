@@ -45,14 +45,14 @@
             this.toolStripSp1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLbManager = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComBoxManager = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripComBoxStatus = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSp2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtMakeSelection = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLbStatus = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripComBoxStatus = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSp3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripBtMakeSelection = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSp4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripBtUpdate = new System.Windows.Forms.ToolStripButton();
             this.DataGridView = new System.Windows.Forms.DataGridView();
-            this.toolStripLbStatus = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSp4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -193,15 +193,26 @@
             this.toolStripComBoxManager.Name = "toolStripComBoxManager";
             this.toolStripComBoxManager.Size = new System.Drawing.Size(121, 25);
             // 
+            // toolStripSp2
+            // 
+            this.toolStripSp2.Name = "toolStripSp2";
+            this.toolStripSp2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLbStatus
+            // 
+            this.toolStripLbStatus.Name = "toolStripLbStatus";
+            this.toolStripLbStatus.Size = new System.Drawing.Size(46, 22);
+            this.toolStripLbStatus.Text = "Статус:";
+            // 
             // toolStripComBoxStatus
             // 
             this.toolStripComBoxStatus.Name = "toolStripComBoxStatus";
             this.toolStripComBoxStatus.Size = new System.Drawing.Size(121, 25);
             // 
-            // toolStripSp2
+            // toolStripSp3
             // 
-            this.toolStripSp2.Name = "toolStripSp2";
-            this.toolStripSp2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSp3.Name = "toolStripSp3";
+            this.toolStripSp3.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripBtMakeSelection
             // 
@@ -211,10 +222,10 @@
             this.toolStripBtMakeSelection.Size = new System.Drawing.Size(62, 22);
             this.toolStripBtMakeSelection.Text = "Поиск";
             // 
-            // toolStripSp3
+            // toolStripSp4
             // 
-            this.toolStripSp3.Name = "toolStripSp3";
-            this.toolStripSp3.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSp4.Name = "toolStripSp4";
+            this.toolStripSp4.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripBtUpdate
             // 
@@ -234,17 +245,6 @@
             this.DataGridView.Name = "DataGridView";
             this.DataGridView.Size = new System.Drawing.Size(734, 441);
             this.DataGridView.TabIndex = 3;
-            // 
-            // toolStripLbStatus
-            // 
-            this.toolStripLbStatus.Name = "toolStripLbStatus";
-            this.toolStripLbStatus.Size = new System.Drawing.Size(46, 22);
-            this.toolStripLbStatus.Text = "Статус:";
-            // 
-            // toolStripSp4
-            // 
-            this.toolStripSp4.Name = "toolStripSp4";
-            this.toolStripSp4.Size = new System.Drawing.Size(6, 25);
             // 
             // MainFormBase
             // 

@@ -35,21 +35,21 @@
             // 
             // lbUserSelect
             // 
-            this.lbUserSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbUserSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lbUserSelect.FormattingEnabled = true;
             this.lbUserSelect.Location = new System.Drawing.Point(12, 12);
             this.lbUserSelect.Name = "lbUserSelect";
-            this.lbUserSelect.Size = new System.Drawing.Size(354, 160);
+            this.lbUserSelect.Size = new System.Drawing.Size(324, 134);
             this.lbUserSelect.TabIndex = 0;
             // 
             // btSelect
             // 
             this.btSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btSelect.Location = new System.Drawing.Point(180, 182);
+            this.btSelect.Location = new System.Drawing.Point(180, 152);
             this.btSelect.Name = "btSelect";
-            this.btSelect.Size = new System.Drawing.Size(90, 23);
+            this.btSelect.Size = new System.Drawing.Size(75, 23);
             this.btSelect.TabIndex = 1;
             this.btSelect.Text = "Выбрать";
             this.btSelect.UseVisualStyleBackColor = true;
@@ -58,9 +58,9 @@
             // btCancel
             // 
             this.btCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btCancel.Location = new System.Drawing.Point(277, 182);
+            this.btCancel.Location = new System.Drawing.Point(261, 152);
             this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(90, 23);
+            this.btCancel.Size = new System.Drawing.Size(75, 23);
             this.btCancel.TabIndex = 2;
             this.btCancel.Text = "Отмена";
             this.btCancel.UseVisualStyleBackColor = true;
@@ -70,15 +70,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(378, 217);
-            this.ControlBox = false;
+            this.ClientSize = new System.Drawing.Size(348, 185);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.btSelect);
             this.Controls.Add(this.lbUserSelect);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(394, 255);
+            this.MinimumSize = new System.Drawing.Size(364, 223);
             this.Name = "frmUserSelect";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Выбор пользователя";
             this.ResumeLayout(false);
