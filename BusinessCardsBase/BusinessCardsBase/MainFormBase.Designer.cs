@@ -31,26 +31,28 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormBase));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.menuStripService = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStripServiceMangerBase = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripServicesExit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripOptions = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStripOptionsChangeUser = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripOptionsProgramSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStripHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusStripLbUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStripLbUserSelect = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripBtAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStripSp1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLbSort = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLbManager = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComBoxManager = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripComBoxStatus = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSp2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSp3 = new System.Windows.Forms.ToolStripSeparator();
-            this.DataGridView = new System.Windows.Forms.DataGridView();
-            this.toolStripBtAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtMakeSelection = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSp3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripBtUpdate = new System.Windows.Forms.ToolStripButton();
-            this.menuStripServiceMangerBase = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStripOptionsChangeUser = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStripHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.DataGridView = new System.Windows.Forms.DataGridView();
+            this.toolStripLbStatus = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSp4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -78,6 +80,14 @@
             this.menuStripService.Size = new System.Drawing.Size(59, 20);
             this.menuStripService.Text = "Сервис";
             // 
+            // menuStripServiceMangerBase
+            // 
+            this.menuStripServiceMangerBase.Image = global::BusinessCardsBase.Properties.Resources.group;
+            this.menuStripServiceMangerBase.Name = "menuStripServiceMangerBase";
+            this.menuStripServiceMangerBase.Size = new System.Drawing.Size(170, 22);
+            this.menuStripServiceMangerBase.Text = "База менеджеров";
+            this.menuStripServiceMangerBase.Click += new System.EventHandler(this.menuStripServiceMangerBase_Click);
+            // 
             // menuStripServicesExit
             // 
             this.menuStripServicesExit.Name = "menuStripServicesExit";
@@ -93,12 +103,28 @@
             this.menuStripOptions.Size = new System.Drawing.Size(79, 20);
             this.menuStripOptions.Text = "Настройки";
             // 
+            // menuStripOptionsChangeUser
+            // 
+            this.menuStripOptionsChangeUser.Image = global::BusinessCardsBase.Properties.Resources.user_go;
+            this.menuStripOptionsChangeUser.Name = "menuStripOptionsChangeUser";
+            this.menuStripOptionsChangeUser.Size = new System.Drawing.Size(203, 22);
+            this.menuStripOptionsChangeUser.Text = "Сменить пользователя";
+            this.menuStripOptionsChangeUser.Click += new System.EventHandler(this.menuStripOptionsChangeUser_Click);
+            // 
             // menuStripOptionsProgramSettings
             // 
             this.menuStripOptionsProgramSettings.Image = global::BusinessCardsBase.Properties.Resources.wrench;
             this.menuStripOptionsProgramSettings.Name = "menuStripOptionsProgramSettings";
             this.menuStripOptionsProgramSettings.Size = new System.Drawing.Size(203, 22);
             this.menuStripOptionsProgramSettings.Text = "Настройки программы";
+            // 
+            // menuStripHelp
+            // 
+            this.menuStripHelp.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.menuStripHelp.Image = global::BusinessCardsBase.Properties.Resources.help;
+            this.menuStripHelp.Name = "menuStripHelp";
+            this.menuStripHelp.Size = new System.Drawing.Size(84, 20);
+            this.menuStripHelp.Text = "Помощь";
             // 
             // statusStrip
             // 
@@ -128,12 +154,14 @@
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripBtAdd,
             this.toolStripSp1,
-            this.toolStripLbSort,
+            this.toolStripLbManager,
             this.toolStripComBoxManager,
-            this.toolStripComBoxStatus,
             this.toolStripSp2,
-            this.toolStripBtMakeSelection,
+            this.toolStripLbStatus,
+            this.toolStripComBoxStatus,
             this.toolStripSp3,
+            this.toolStripBtMakeSelection,
+            this.toolStripSp4,
             this.toolStripBtUpdate});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
@@ -141,16 +169,24 @@
             this.toolStrip.TabIndex = 2;
             this.toolStrip.Text = "toolStrip";
             // 
+            // toolStripBtAdd
+            // 
+            this.toolStripBtAdd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtAdd.Image")));
+            this.toolStripBtAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtAdd.Name = "toolStripBtAdd";
+            this.toolStripBtAdd.Size = new System.Drawing.Size(126, 22);
+            this.toolStripBtAdd.Text = "Добавить изделие";
+            // 
             // toolStripSp1
             // 
             this.toolStripSp1.Name = "toolStripSp1";
             this.toolStripSp1.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripLbSort
+            // toolStripLbManager
             // 
-            this.toolStripLbSort.Name = "toolStripLbSort";
-            this.toolStripLbSort.Size = new System.Drawing.Size(76, 22);
-            this.toolStripLbSort.Text = "Сортировка:";
+            this.toolStripLbManager.Name = "toolStripLbManager";
+            this.toolStripLbManager.Size = new System.Drawing.Size(68, 22);
+            this.toolStripLbManager.Text = "Менеджер:";
             // 
             // toolStripComBoxManager
             // 
@@ -167,10 +203,27 @@
             this.toolStripSp2.Name = "toolStripSp2";
             this.toolStripSp2.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripBtMakeSelection
+            // 
+            this.toolStripBtMakeSelection.Image = global::BusinessCardsBase.Properties.Resources.magnifier;
+            this.toolStripBtMakeSelection.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtMakeSelection.Name = "toolStripBtMakeSelection";
+            this.toolStripBtMakeSelection.Size = new System.Drawing.Size(62, 22);
+            this.toolStripBtMakeSelection.Text = "Поиск";
+            // 
             // toolStripSp3
             // 
             this.toolStripSp3.Name = "toolStripSp3";
             this.toolStripSp3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripBtUpdate
+            // 
+            this.toolStripBtUpdate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripBtUpdate.Image = global::BusinessCardsBase.Properties.Resources.arrow_refresh;
+            this.toolStripBtUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtUpdate.Name = "toolStripBtUpdate";
+            this.toolStripBtUpdate.Size = new System.Drawing.Size(81, 22);
+            this.toolStripBtUpdate.Text = "Обновить";
             // 
             // DataGridView
             // 
@@ -182,54 +235,16 @@
             this.DataGridView.Size = new System.Drawing.Size(734, 441);
             this.DataGridView.TabIndex = 3;
             // 
-            // toolStripBtAdd
+            // toolStripLbStatus
             // 
-            this.toolStripBtAdd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtAdd.Image")));
-            this.toolStripBtAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtAdd.Name = "toolStripBtAdd";
-            this.toolStripBtAdd.Size = new System.Drawing.Size(126, 22);
-            this.toolStripBtAdd.Text = "Добавить изделие";
+            this.toolStripLbStatus.Name = "toolStripLbStatus";
+            this.toolStripLbStatus.Size = new System.Drawing.Size(46, 22);
+            this.toolStripLbStatus.Text = "Статус:";
             // 
-            // toolStripBtMakeSelection
+            // toolStripSp4
             // 
-            this.toolStripBtMakeSelection.Image = global::BusinessCardsBase.Properties.Resources.magnifier;
-            this.toolStripBtMakeSelection.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtMakeSelection.Name = "toolStripBtMakeSelection";
-            this.toolStripBtMakeSelection.Size = new System.Drawing.Size(62, 22);
-            this.toolStripBtMakeSelection.Text = "Поиск";
-            // 
-            // toolStripBtUpdate
-            // 
-            this.toolStripBtUpdate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripBtUpdate.Image = global::BusinessCardsBase.Properties.Resources.arrow_refresh;
-            this.toolStripBtUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtUpdate.Name = "toolStripBtUpdate";
-            this.toolStripBtUpdate.Size = new System.Drawing.Size(81, 22);
-            this.toolStripBtUpdate.Text = "Обновить";
-            // 
-            // menuStripServiceMangerBase
-            // 
-            this.menuStripServiceMangerBase.Image = global::BusinessCardsBase.Properties.Resources.group;
-            this.menuStripServiceMangerBase.Name = "menuStripServiceMangerBase";
-            this.menuStripServiceMangerBase.Size = new System.Drawing.Size(170, 22);
-            this.menuStripServiceMangerBase.Text = "База менеджеров";
-            this.menuStripServiceMangerBase.Click += new System.EventHandler(this.menuStripServiceMangerBase_Click);
-            // 
-            // menuStripOptionsChangeUser
-            // 
-            this.menuStripOptionsChangeUser.Image = global::BusinessCardsBase.Properties.Resources.user_go;
-            this.menuStripOptionsChangeUser.Name = "menuStripOptionsChangeUser";
-            this.menuStripOptionsChangeUser.Size = new System.Drawing.Size(203, 22);
-            this.menuStripOptionsChangeUser.Text = "Сменить пользователя";
-            this.menuStripOptionsChangeUser.Click += new System.EventHandler(this.menuStripOptionsChangeUser_Click);
-            // 
-            // menuStripHelp
-            // 
-            this.menuStripHelp.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.menuStripHelp.Image = global::BusinessCardsBase.Properties.Resources.help;
-            this.menuStripHelp.Name = "menuStripHelp";
-            this.menuStripHelp.Size = new System.Drawing.Size(84, 20);
-            this.menuStripHelp.Text = "Помощь";
+            this.toolStripSp4.Name = "toolStripSp4";
+            this.toolStripSp4.Size = new System.Drawing.Size(6, 25);
             // 
             // MainFormBase
             // 
@@ -268,7 +283,7 @@
         private System.Windows.Forms.DataGridView DataGridView;
         private System.Windows.Forms.ToolStripButton toolStripBtAdd;
         private System.Windows.Forms.ToolStripSeparator toolStripSp1;
-        private System.Windows.Forms.ToolStripLabel toolStripLbSort;
+        private System.Windows.Forms.ToolStripLabel toolStripLbManager;
         private System.Windows.Forms.ToolStripComboBox toolStripComBoxManager;
         private System.Windows.Forms.ToolStripComboBox toolStripComBoxStatus;
         private System.Windows.Forms.ToolStripSeparator toolStripSp2;
@@ -281,6 +296,8 @@
         private System.Windows.Forms.ToolStripMenuItem menuStripOptionsProgramSettings;
         private System.Windows.Forms.ToolStripMenuItem menuStripServiceMangerBase;
         private System.Windows.Forms.ToolStripMenuItem menuStripServicesExit;
+        private System.Windows.Forms.ToolStripLabel toolStripLbStatus;
+        private System.Windows.Forms.ToolStripSeparator toolStripSp4;
     }
 }
 

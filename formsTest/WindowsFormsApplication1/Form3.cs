@@ -16,9 +16,6 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             dateTimePicker1.Enabled = false;
             dateTimePicker2.Enabled = false;
-            dateTimePicker3.Enabled = false;
-            dateTimePicker4.Enabled = false;
-            textBox1.Enabled = false;
             textBox2.Enabled = false;
             comboBox1.Enabled = false;
         }
@@ -27,17 +24,6 @@ namespace WindowsFormsApplication1
         {
             dateTimePicker1.Enabled = checkBox1.Checked;
             dateTimePicker2.Enabled = checkBox1.Checked;
-        }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            dateTimePicker3.Enabled = checkBox2.Checked;
-            dateTimePicker4.Enabled = checkBox2.Checked;
-        }
-
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
-        {
-            textBox1.Enabled = checkBox3.Checked;
         }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
