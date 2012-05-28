@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using bcard;
+using WindowsFormsApplication1.Properties;
 
 namespace WindowsFormsApplication1
 {
@@ -16,6 +17,7 @@ namespace WindowsFormsApplication1
         //{
         //    get { listBox1.SelectedItem.ToString(); }
         //}
+        Settings set = Settings.Default;
 
         public Form2(IQueryable<Manager> managers)
         {
@@ -35,7 +37,7 @@ namespace WindowsFormsApplication1
             // событие
             SelectUser.EventHandler("test");
 
-            Close();
+            set.nameUser = "test999";
         }
 
         private void button2_Click(object sender, EventArgs e)

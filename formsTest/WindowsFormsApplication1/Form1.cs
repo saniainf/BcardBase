@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using bcard;
+using System.Configuration;
+//using WindowsFormsApplication1.Properties;
 
 namespace WindowsFormsApplication1
 {
@@ -16,6 +18,8 @@ namespace WindowsFormsApplication1
         public IQueryable<Bcard> bCards;
         public IQueryable<Manager> Managers;
 
+        Properties.Settings set = Properties.Settings.Default;
+
         public Form1()
         {
             InitializeComponent();
@@ -23,9 +27,12 @@ namespace WindowsFormsApplication1
             bCards = db.Bcards;
             Managers = db.Managers;
             reloadAll();
-
             // Добавляем обработчик события
             SelectUser.EventHandler += new SelectUser.selectUserEvent(this.userSelect);
+            set.PropertyChanged +=new PropertyChangedEventHandler(this.set_PropertyChanged);
+
+            //settings test
+            toolStripStatusLabel2.Text = set.nameUser;
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -83,20 +90,18 @@ namespace WindowsFormsApplication1
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            Manager vz = new Manager
-            {
-                Fname = "asdasd",
-                Color = null
-            };
-
-            db.Managers.InsertOnSubmit(vz);
-
-            db.SubmitChanges();
+            set.nameUser = "test43";
+            //set.Save();
         }
 
         void userSelect(string name)
         {
             toolStripStatusLabel2.Text = name;
+        }
+
+        void set_PropertyChanged(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = set.nameUser;
         }
     }
 }
