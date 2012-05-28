@@ -33,7 +33,7 @@ namespace BusinessCardsBase
 
         private void menuStripServiceMangerBase_Click(object sender, EventArgs e)
         {
-            frmBaseManagers frmBM = new frmBaseManagers();
+            frmBaseManagers frmBM = new frmBaseManagers(dbBCard);
             frmBM.ShowInTaskbar = false;
             frmBM.Owner = this;
             frmBM.Show();
