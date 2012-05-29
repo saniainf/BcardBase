@@ -55,6 +55,7 @@
             this.tbLastName.Name = "tbLastName";
             this.tbLastName.Size = new System.Drawing.Size(156, 20);
             this.tbLastName.TabIndex = 1;
+            this.tbLastName.TextChanged += new System.EventHandler(this.tbLastName_TextChanged);
             // 
             // tbFirstName
             // 
@@ -64,6 +65,7 @@
             this.tbFirstName.Name = "tbFirstName";
             this.tbFirstName.Size = new System.Drawing.Size(156, 20);
             this.tbFirstName.TabIndex = 0;
+            this.tbFirstName.TextChanged += new System.EventHandler(this.tbFirstName_TextChanged);
             // 
             // lbFirstName
             // 
