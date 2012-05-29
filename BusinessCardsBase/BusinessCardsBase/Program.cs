@@ -19,23 +19,42 @@ namespace BusinessCardsBase
         }
     }
     
-    /// <summary>
-    /// static класс для делегатов,
-    /// используется для передачи данных между формами
-    /// </summary>
+    
+    // класс делегатов для передачи данных между формами
     public static class PassingDataSupport
     {
-        /// <summary>
-        /// делегат поддежки события выбора пользователя
-        /// </summary>
-        /// <param name="name">имя</param>
-        public delegate void selectUserEvent(string name);
-        
-        /// <summary>
-        /// событие "выбор пользователя"
-        /// </summary>
-        public static selectUserEvent eventSelectUser;
+        // выбор пользователя
+        public delegate void ofSelectUser(string name);
+        public static ofSelectUser dataSelectUser;
 
-        public static EventHandler eventReload;
+        // создание нового манагера
+        public delegate void ofNewManager(string fname, string lname, string ids);
+        public static ofNewManager dataNewManager;
+    }
+
+
+    // класс делегатов для основных событий
+    public static class GlobalEvents
+    {
+        /// <summary>
+        /// подтвердить изменение базы
+        /// </summary>
+        public delegate void submitChangeBase(string ofTitle);
+
+        /// <summary>
+        /// событие для сохранения изменений базы
+        /// </summary>
+        public static submitChangeBase eventSubmit;
+
+        /// <summary>
+        /// reload таблицы
+        /// </summary>
+        /// <param name="title">название формы</param>
+        public delegate void reloadDataGrid(string title);
+
+        /// <summary>
+        /// событие для reload таблицы
+        /// </summary>
+        public static reloadDataGrid eventReload;
     }
 }

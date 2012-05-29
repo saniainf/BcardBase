@@ -1,6 +1,6 @@
 ﻿namespace BusinessCardsBase
 {
-    partial class frmUserSelect
+    partial class frmSelectUser
     {
         /// <summary>
         /// Required designer variable.

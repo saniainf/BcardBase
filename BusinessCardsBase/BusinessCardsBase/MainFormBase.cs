@@ -22,8 +22,9 @@ namespace BusinessCardsBase
 
         public MainFormBase()
         {
-            PassingDataSupport.eventSelectUser += new PassingDataSupport.selectUserEvent(this.changeUser); // подписаться на событие select user
-            PassingDataSupport.eventReload += new System.EventHandler(this.loadDataTable); // подписка на загрузку таблицы
+            PassingDataSupport.dataSelectUser += new PassingDataSupport.ofSelectUser(this.changeUser); // event selectUser
+            GlobalEvents.eventReload += new GlobalEvents.reloadDataGrid(this.loadDataTable); // event load dataGridView
+            GlobalEvents.eventSubmit += new GlobalEvents.submitChangeBase(this.submitChange); // event сохранить изменение базы
             InitializeComponent();
         }
 
@@ -41,29 +42,50 @@ namespace BusinessCardsBase
 
         private void menuStripOptionsChangeUser_Click(object sender, EventArgs e)
         {
-            showUserSelectForm();
+            showSelectUserForm();
         }
 
         #endregion
 
         #region supportMethods
 
-        void showUserSelectForm()
+        // вызов формы выбора пользователя
+        void showSelectUserForm()
         {
-            frmUserSelect frmUS = new frmUserSelect();
+            frmSelectUser frmUS = new frmSelectUser();
             frmUS.ShowInTaskbar = false;
             frmUS.Owner = this;
             frmUS.Show();
         }
 
+        // для события сменить пользователя
         void changeUser(string name)
         {
             statusStripLbUserSelect.Text = name;
         }
 
-        void loadDataTable(object sender, EventArgs e)
+        // load / reload таблицы
+        void loadDataTable(string title)
         {
-            statusStripLbUserSelect.Text = "ok";
+            if (title == "MainFormBase")
+            {
+                // load/reload datagridview
+            }
+        }
+
+        // сохранение изменений в базе
+        void submitChange(string oftitle)
+        {
+            try
+            {
+                dbBCard.SubmitChanges(); // отправить изменения
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            GlobalEvents.eventReload(oftitle);
         }
 
         #endregion

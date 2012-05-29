@@ -15,5 +15,19 @@ namespace BusinessCardsBase
         {
             InitializeComponent();
         }
+
+        private void btAdd_Click(object sender, EventArgs e)
+        {
+            string fn = tbFirstName.Text;
+            string ln = tbLastName.Text;
+            string ids = tbId.Text;
+            PassingDataSupport.dataNewManager(fn, ln, ids);
+            Close();
+        }
+
+        private void btCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

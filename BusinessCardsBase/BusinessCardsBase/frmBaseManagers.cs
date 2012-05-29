@@ -24,15 +24,33 @@ namespace BusinessCardsBase
             InitializeComponent();
             this.dbBCard = dbBCard;
 
-            PassingDataSupport.eventReload += new System.EventHandler(this.loadDataTable); // подписка на загрузку таблицы
-            PassingDataSupport.eventReload(this, null); // событие загрузки таблицы
+            GlobalEvents.eventReload += new GlobalEvents.reloadDataGrid(this.loadDataTable); // подписка на загрузку таблицы
+            PassingDataSupport.dataNewManager += new PassingDataSupport.ofNewManager(this.newManger); // подписка на данные из NewManager
+            
+            GlobalEvents.eventReload("frmBaseManagers"); // загрузить таблицу
         }
 
+        // кнопка добавить
         private void btAddManager_Click(object sender, EventArgs e)
         {
             frmNewManager frmNM = new frmNewManager();
             frmNM.ShowInTaskbar = false;
             frmNM.ShowDialog(this);
+        }
+
+        // кнопка удалить
+        private void btDeleteManager_Click(object sender, EventArgs e)
+        {
+            Guid i = (Guid)dataGridView.CurrentRow.Cells[0].Value;
+
+            var delId = from d in dbBCard.Managers
+                        where d.GuId == i
+                        select d;
+
+            foreach (var d in delId)
+                dbBCard.Managers.DeleteOnSubmit(d); // выполнение запроса
+
+            GlobalEvents.eventSubmit("frmBaseManagers");
         }
 
         private void btClose_Click(object sender, EventArgs e)
@@ -42,17 +60,39 @@ namespace BusinessCardsBase
 
         #region supportMethods
 
-        void loadDataTable(object sender, EventArgs e)
+        // load / reload таблицы
+        void loadDataTable(string title)
         {
-            var dgView = from d in dbBCard.Managers
-                         select new { guid = d.GuId, fname = d.Fname, lname = d.Lname, id = d.Id};
+            if (title == "frmBaseManagers")
+            {
+                var dgView = from d in dbBCard.Managers
+                             select new { guid = d.GuId, fname = d.Fname, lname = d.Lname, id = d.Id };
 
-            dataGridView.DataSource = dgView;
+                dataGridView.DataSource = dgView;
 
-            dataGridView.Columns[0].Visible = false;
-            dataGridView.Columns[1].HeaderText = "Имя";
-            dataGridView.Columns[2].HeaderText = "Фамилия";
-            dataGridView.Columns[3].HeaderText = "Идентификатор";
+                dataGridView.Columns[0].Visible = false;
+                dataGridView.Columns[1].HeaderText = "Имя";
+                dataGridView.Columns[2].HeaderText = "Фамилия";
+                dataGridView.Columns[3].HeaderText = "Идентификатор";
+            }
+        }
+
+        // добавить нового манагера
+        void newManger(string fn, string ln, string ids)
+        {
+            Guid key = Guid.NewGuid();
+
+            Manager addClass = new Manager // класс добавления в таблицу
+            {
+                Fname = fn,
+                Lname = ln,
+                Color = null,
+                Id  = ids,
+                GuId = key
+            };
+
+            dbBCard.Managers.InsertOnSubmit(addClass);
+            GlobalEvents.eventSubmit("frmBaseManagers");
         }
 
         #endregion

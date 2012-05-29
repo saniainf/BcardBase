@@ -60,11 +60,11 @@
     <Compile Include="frmNewManager.Designer.cs">
       <DependentUpon>frmNewManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmUserSelect.cs">
+    <Compile Include="frmSelectUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUserSelect.Designer.cs">
-      <DependentUpon>frmUserSelect.cs</DependentUpon>
+    <Compile Include="frmSelectUser.Designer.cs">
+      <DependentUpon>frmSelectUser.cs</DependentUpon>
     </Compile>
     <Compile Include="MainFormBase.cs">
       <SubType>Form</SubType>
@@ -80,8 +80,8 @@
     <EmbeddedResource Include="frmNewManager.resx">
       <DependentUpon>frmNewManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUserSelect.resx">
-      <DependentUpon>frmUserSelect.cs</DependentUpon>
+    <EmbeddedResource Include="frmSelectUser.resx">
+      <DependentUpon>frmSelectUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainFormBase.resx">
       <DependentUpon>MainFormBase.cs</DependentUpon>

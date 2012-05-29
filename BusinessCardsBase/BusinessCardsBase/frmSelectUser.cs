@@ -9,21 +9,21 @@ using System.Windows.Forms;
 
 namespace BusinessCardsBase
 {
-    public partial class frmUserSelect : Form
+    public partial class frmSelectUser : Form
     {
-        public frmUserSelect()
+        public frmSelectUser()
         {
             InitializeComponent();
         }
 
         private void btSelect_Click(object sender, EventArgs e)
         {
-            PassingDataSupport.eventSelectUser("test"); // вызвать событие "выбор пользователя"
+            PassingDataSupport.dataSelectUser("test"); // вызвать событие "выбор пользователя"
         }
 
         private void btCancel_Click(object sender, EventArgs e)
         {
-            PassingDataSupport.eventReload(this, null); // событие загрузки таблицы
+            Close();
         }
     }
 }

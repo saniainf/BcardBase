@@ -67,6 +67,7 @@
             this.btDeleteManager.TabIndex = 2;
             this.btDeleteManager.Text = "Удалить";
             this.btDeleteManager.UseVisualStyleBackColor = true;
+            this.btDeleteManager.Click += new System.EventHandler(this.btDeleteManager_Click);
             // 
             // btClose
             // 
