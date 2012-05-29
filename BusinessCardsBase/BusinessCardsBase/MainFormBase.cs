@@ -22,9 +22,9 @@ namespace BusinessCardsBase
 
         public MainFormBase()
         {
-            PassingDataSupport.dataSelectUser += new PassingDataSupport.ofSelectUser(this.changeUser); // event selectUser
-            GlobalEvents.eventReload += new GlobalEvents.reloadDataGrid(this.loadDataTable); // event load dataGridView
-            GlobalEvents.eventSubmit += new GlobalEvents.submitChangeBase(this.submitChange); // event сохранить изменение базы
+            PassingDataSupport.dataSelectUser = new PassingDataSupport.ofSelectUser(this.changeUser); // event selectUser
+            GlobalEvents.eventReload = new GlobalEvents.reloadDataGrid(this.loadDataTable); // event load dataGridView
+            GlobalEvents.eventSubmit = new GlobalEvents.submitChangeBase(this.submitChange); // event сохранить изменение базы
             InitializeComponent();
         }
 
@@ -52,7 +52,7 @@ namespace BusinessCardsBase
         // вызов формы выбора пользователя
         void showSelectUserForm()
         {
-            frmSelectUser frmUS = new frmSelectUser();
+            frmSelectUser frmUS = new frmSelectUser(dbBCard);
             frmUS.ShowInTaskbar = false;
             frmUS.Owner = this;
             frmUS.Show();
@@ -76,14 +76,14 @@ namespace BusinessCardsBase
         // сохранение изменений в базе
         void submitChange(string oftitle)
         {
-            try
-            {
+            //try
+            //{
                 dbBCard.SubmitChanges(); // отправить изменения
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
 
             GlobalEvents.eventReload(oftitle);
         }

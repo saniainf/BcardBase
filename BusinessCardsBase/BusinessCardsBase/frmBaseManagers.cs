@@ -21,11 +21,12 @@ namespace BusinessCardsBase
 
         public frmBaseManagers(BcardBase dbBCard)
         {
-            InitializeComponent();
             this.dbBCard = dbBCard;
 
-            GlobalEvents.eventReload += new GlobalEvents.reloadDataGrid(this.loadDataTable); // подписка на загрузку таблицы
-            PassingDataSupport.dataNewManager += new PassingDataSupport.ofNewManager(this.newManger); // подписка на данные из NewManager
+            GlobalEvents.eventReload = new GlobalEvents.reloadDataGrid(this.loadDataTable); // подписка на загрузку таблицы
+            PassingDataSupport.dataNewManager = new PassingDataSupport.ofNewManager(this.newManger); // подписка на данные из NewManager
+            
+            InitializeComponent();
             
             GlobalEvents.eventReload("frmBaseManagers"); // загрузить таблицу
         }
@@ -41,20 +42,21 @@ namespace BusinessCardsBase
         // кнопка удалить
         private void btDeleteManager_Click(object sender, EventArgs e)
         {
-            Guid i = (Guid)dataGridView.CurrentRow.Cells[0].Value;
+            Guid i = (Guid)dataGridView.CurrentRow.Cells[0].Value; // взять индекс из 0 ячейки
 
             var delId = from d in dbBCard.Managers
                         where d.GuId == i
                         select d;
 
             foreach (var d in delId)
-                dbBCard.Managers.DeleteOnSubmit(d); // выполнение запроса
+                dbBCard.Managers.DeleteOnSubmit(d); // выполнение запроса удалить
 
             GlobalEvents.eventSubmit("frmBaseManagers");
         }
 
         private void btClose_Click(object sender, EventArgs e)
         {
+            Dispose();
             Close();
         }
 
@@ -74,6 +76,8 @@ namespace BusinessCardsBase
                 dataGridView.Columns[1].HeaderText = "Имя";
                 dataGridView.Columns[2].HeaderText = "Фамилия";
                 dataGridView.Columns[3].HeaderText = "Идентификатор";
+
+                //dataGridView.Sort(dataGridView.Columns[1], ListSortDirection.Ascending);
             }
         }
 
