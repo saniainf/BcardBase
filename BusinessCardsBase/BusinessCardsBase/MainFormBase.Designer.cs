@@ -236,6 +236,7 @@
             this.toolStripBtUpdate.Name = "toolStripBtUpdate";
             this.toolStripBtUpdate.Size = new System.Drawing.Size(81, 22);
             this.toolStripBtUpdate.Text = "Обновить";
+            this.toolStripBtUpdate.Click += new System.EventHandler(this.toolStripBtUpdate_Click);
             // 
             // DataGridView
             // 

@@ -42,8 +42,8 @@ namespace BusinessCardsBase
 
         void idChanged()
         {
-            string fn = tbFirstName.Text;
-            string ln = tbLastName.Text;
+            string fn = tbFirstName.Text.ToLower();
+            string ln = tbLastName.Text.ToLower();
 
             if (fn.Length >=3 && ln.Length >=3)
             {

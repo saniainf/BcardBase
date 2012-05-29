@@ -23,7 +23,7 @@ namespace BusinessCardsBase
         {
             this.dbBCard = dbBCard;
 
-            GlobalEvents.eventReload = new GlobalEvents.reloadDataGrid(this.loadDataTable); // подписка на загрузку таблицы
+            GlobalEvents.eventReload += new GlobalEvents.reloadDataGrid(this.loadDataTable); // подписка на загрузку таблицы
             PassingDataSupport.dataNewManager = new PassingDataSupport.ofNewManager(this.newManger); // подписка на данные из NewManager
             
             InitializeComponent();
@@ -57,8 +57,12 @@ namespace BusinessCardsBase
 
         private void btClose_Click(object sender, EventArgs e)
         {
-            Dispose();
             Close();
+        }
+
+        private void frmBaseManagers_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            GlobalEvents.eventReload -= new GlobalEvents.reloadDataGrid(this.loadDataTable);
         }
 
         #region supportMethods

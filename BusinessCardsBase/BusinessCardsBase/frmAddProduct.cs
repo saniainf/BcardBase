@@ -34,13 +34,15 @@ namespace BusinessCardsBase
         private void btAdd_Click(object sender, EventArgs e)
         {
             Guid key = Guid.NewGuid();
+            DateTime date = dateGet.Value;
 
             Bcard addClass = new Bcard // класс добавления в таблицу
             {
                 Manager = "default",
                 Client = "default",
                 NameFile = "default",
-                GuId = key
+                GuId = key,
+                Date = date
             };
 
             dbBCard.Bcards.InsertOnSubmit(addClass);

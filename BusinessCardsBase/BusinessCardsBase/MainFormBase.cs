@@ -23,13 +23,12 @@ namespace BusinessCardsBase
         public MainFormBase()
         {
             PassingDataSupport.dataSelectUser = new PassingDataSupport.ofSelectUser(this.changeUser); // event selectUser
-            GlobalEvents.eventReload = new GlobalEvents.reloadDataGrid(this.loadDataTable); // event load dataGridView
+            GlobalEvents.eventReload += new GlobalEvents.reloadDataGrid(this.loadDataTable); // event load dataGridView
             GlobalEvents.eventSubmit = new GlobalEvents.submitChangeBase(this.submitChange); // event сохранить изменение базы
 
             InitializeComponent();
 
             GlobalEvents.eventReload("MainFormBase"); // загрузить таблицу
-            DataGridView.Sort(DataGridView.Columns[1], ListSortDirection.Ascending);
         }
 
         #endregion
@@ -59,6 +58,11 @@ namespace BusinessCardsBase
             frmAP.ShowInTaskbar = false;
             frmAP.Owner = this;
             frmAP.Show();
+        }
+
+        private void toolStripBtUpdate_Click(object sender, EventArgs e)
+        {
+            GlobalEvents.eventReload("MainFormBase"); // reload таблицы
         }
 
         #endregion
@@ -104,6 +108,9 @@ namespace BusinessCardsBase
                 DataGridView.Columns[3].HeaderText = "Заказчик";
                 DataGridView.Columns[4].HeaderText = "Название";
                 DataGridView.Columns[5].HeaderText = "Статус";
+
+                //сортировка по 2 столбцу
+                DataGridView.Sort(DataGridView.Columns[1], ListSortDirection.Ascending);
             }
         }
 
