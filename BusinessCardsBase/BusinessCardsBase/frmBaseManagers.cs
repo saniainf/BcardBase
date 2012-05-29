@@ -29,6 +29,7 @@ namespace BusinessCardsBase
             InitializeComponent();
             
             GlobalEvents.eventReload("frmBaseManagers"); // загрузить таблицу
+            dataGridView.Sort(dataGridView.Columns[2], ListSortDirection.Ascending);
         }
 
         // кнопка добавить
@@ -76,8 +77,6 @@ namespace BusinessCardsBase
                 dataGridView.Columns[1].HeaderText = "Имя";
                 dataGridView.Columns[2].HeaderText = "Фамилия";
                 dataGridView.Columns[3].HeaderText = "Идентификатор";
-
-                //dataGridView.Sort(dataGridView.Columns[1], ListSortDirection.Ascending);
             }
         }
 

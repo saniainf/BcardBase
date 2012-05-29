@@ -176,6 +176,7 @@
             this.toolStripBtAdd.Name = "toolStripBtAdd";
             this.toolStripBtAdd.Size = new System.Drawing.Size(126, 22);
             this.toolStripBtAdd.Text = "Добавить изделие";
+            this.toolStripBtAdd.Click += new System.EventHandler(this.toolStripBtAdd_Click);
             // 
             // toolStripSp1
             // 

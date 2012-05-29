@@ -25,7 +25,11 @@ namespace BusinessCardsBase
             PassingDataSupport.dataSelectUser = new PassingDataSupport.ofSelectUser(this.changeUser); // event selectUser
             GlobalEvents.eventReload = new GlobalEvents.reloadDataGrid(this.loadDataTable); // event load dataGridView
             GlobalEvents.eventSubmit = new GlobalEvents.submitChangeBase(this.submitChange); // event сохранить изменение базы
+
             InitializeComponent();
+
+            GlobalEvents.eventReload("MainFormBase"); // загрузить таблицу
+            DataGridView.Sort(DataGridView.Columns[1], ListSortDirection.Ascending);
         }
 
         #endregion
@@ -43,6 +47,18 @@ namespace BusinessCardsBase
         private void menuStripOptionsChangeUser_Click(object sender, EventArgs e)
         {
             showSelectUserForm();
+        }
+
+        #endregion
+
+        #region event toolStrip
+
+        private void toolStripBtAdd_Click(object sender, EventArgs e)
+        {
+            frmAddProduct frmAP = new frmAddProduct(dbBCard);
+            frmAP.ShowInTaskbar = false;
+            frmAP.Owner = this;
+            frmAP.Show();
         }
 
         #endregion
@@ -69,21 +85,39 @@ namespace BusinessCardsBase
         {
             if (title == "MainFormBase")
             {
-                // load/reload datagridview
+                var dgView = from d in dbBCard.Bcards
+                             select new
+                             {
+                                 guid = d.GuId,
+                                 date = d.Date,
+                                 manager = d.Manager,
+                                 client  = d.Client,
+                                 namefile = d.NameFile,
+                                 status = d.Status
+                             };
+
+                DataGridView.DataSource = dgView;
+
+                //DataGridView.Columns[0].Visible = false;
+                DataGridView.Columns[1].HeaderText = "Дата приема";
+                DataGridView.Columns[2].HeaderText = "Менеджер";
+                DataGridView.Columns[3].HeaderText = "Заказчик";
+                DataGridView.Columns[4].HeaderText = "Название";
+                DataGridView.Columns[5].HeaderText = "Статус";
             }
         }
 
         // сохранение изменений в базе
         void submitChange(string oftitle)
         {
-            //try
-            //{
+            try
+            {
                 dbBCard.SubmitChanges(); // отправить изменения
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             GlobalEvents.eventReload(oftitle);
         }
