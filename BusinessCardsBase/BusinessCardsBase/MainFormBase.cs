@@ -90,7 +90,7 @@ namespace BusinessCardsBase
             var user = from u in dbBCard.Managers
                        where u.Id == set.user
                        select u;
-            
+
             foreach (var u in user)
             {
                 name += u.Fname + " " + u.Lname;
@@ -99,6 +99,30 @@ namespace BusinessCardsBase
             statusStripLbUserSelect.Text = name;
         }
 
+        // изменение пользователя
+        void set_PropertyChanged(object sender, EventArgs e)
+        {
+            loadUser();
+        }
+
+        // сохранение изменений в базе
+        void submitChange(string oftitle)
+        {
+            try
+            {
+                dbBCard.SubmitChanges(); // отправить изменения
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            GlobalEvents.eventReload(oftitle);
+        }
+
+        #endregion
+
+        #region loadTable
 
         // load / reload таблицы
         void loadDataTable(string title)
@@ -129,6 +153,7 @@ namespace BusinessCardsBase
                 DataGridView.Columns[4].HeaderText = "Название";
                 DataGridView.Columns[5].HeaderText = "Статус";
 
+                DataGridView.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 //сортировка по 2 столбцу 
                 //DataGridView.Sort(DataGridView.Columns[1], ListSortDirection.Ascending);
                 addEditButton();
@@ -136,39 +161,18 @@ namespace BusinessCardsBase
             }
         }
 
-        // изменение пользователя
-        void set_PropertyChanged(object sender, EventArgs e)
-        {
-            loadUser();
-        }
-
-        // сохранение изменений в базе
-        void submitChange(string oftitle)
-        {
-            try
-            {
-                dbBCard.SubmitChanges(); // отправить изменения
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            GlobalEvents.eventReload(oftitle);
-        }
-
         #endregion
 
-        #region test
-   
+        #region edit/delete buttons
+
         DataGridViewButtonColumn editButton;
         DataGridViewButtonColumn deleteButton;
 
         void addEditButton()
         {
             editButton = new DataGridViewButtonColumn();
-            editButton.HeaderText = "Edit";
-            editButton.Text = "Edit";
+            editButton.HeaderText = "Редактировать";
+            editButton.Text = "Редактировать";
             editButton.UseColumnTextForButtonValue = true;
             editButton.Width = 80;
             DataGridView.Columns.Insert(6, editButton);
@@ -177,8 +181,8 @@ namespace BusinessCardsBase
         void addDeleteButton()
         {
             deleteButton = new DataGridViewButtonColumn();
-            deleteButton.HeaderText = "Delete";
-            deleteButton.Text = "Delete";
+            deleteButton.HeaderText = "Удалить";
+            deleteButton.Text = "Удалить";
             deleteButton.UseColumnTextForButtonValue = true;
             deleteButton.Width = 80;
             DataGridView.Columns.Insert(7, deleteButton);
@@ -187,11 +191,12 @@ namespace BusinessCardsBase
         private void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int currentRow = int.Parse(e.RowIndex.ToString());
+            int currentColumn = DataGridView.Columns["guid"].Index;
 
             if (DataGridView.Columns[e.ColumnIndex] == deleteButton)
             {
-                Guid i = (Guid)DataGridView[0, currentRow].Value; // взять индекс удаляемой строки из 0 ячейки
-                System.Diagnostics.Debug.WriteLine(DataGridView[0, currentRow].Value);
+                Guid i = (Guid)DataGridView[currentColumn, currentRow].Value; // взять индекс удаляемой строки из 0 ячейки
+                System.Diagnostics.Debug.WriteLine(DataGridView[currentColumn, currentRow].Value);
                 var delId = from d in dbBCard.Bcards
                             where d.GuId == i
                             select d;
@@ -202,6 +207,10 @@ namespace BusinessCardsBase
                 GlobalEvents.eventSubmit("MainFormBase");
             }
         }
+
+        #endregion
+
+        #region test
 
         // переделать на клик
         private void DataGridView_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
