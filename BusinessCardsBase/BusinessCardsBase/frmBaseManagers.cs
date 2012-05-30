@@ -29,7 +29,7 @@ namespace BusinessCardsBase
             InitializeComponent();
 
             GlobalEvents.eventReload("frmBaseManagers"); // загрузить таблицу
-            dataGridView.Sort(dataGridView.Columns[2], ListSortDirection.Ascending);
+            //dataGridView.Sort(dataGridView.Columns[2], ListSortDirection.Ascending);
         }
 
         #region events form
@@ -103,6 +103,16 @@ namespace BusinessCardsBase
 
         }
 
+        // закрасить строки по цвету манагера
+        void setColorRow()
+        {
+            for (int i = 0; i < dataGridView.RowCount; i++)
+            {
+                Color color = Color.FromArgb(int.Parse(dataGridView[4, i].Value.ToString()));
+                dataGridView[4, i].Style.BackColor = color;
+            }
+        }
+
         // добавить нового манагера
         void newManger(string fn, string ln, string ids, System.Drawing.Color color)
         {
@@ -119,16 +129,6 @@ namespace BusinessCardsBase
 
             dbBCard.Managers.InsertOnSubmit(addClass);
             GlobalEvents.eventSubmit("frmBaseManagers");
-        }
-
-        // закрасить строки по цвету манагера
-        void setColorRow()
-        {
-            for (int i = 0; i < dataGridView.RowCount; i++)
-            {
-                Color color = Color.FromArgb(int.Parse(dataGridView[4, i].Value.ToString()));
-                dataGridView[4, i].Style.BackColor = color;
-            }
         }
 
         #endregion

@@ -7,6 +7,9 @@ namespace BusinessCardsBase
 {
     static class Program
     {
+        //public static int debug;
+        //System.Diagnostics.Debug.WriteLine(Program.debug ++);
+
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>

@@ -16,20 +16,22 @@ namespace BusinessCardsBase
 
         BcardBase dbBCard;
 
+        Properties.Settings set = Properties.Settings.Default;
+
         #endregion
 
         public frmSelectUser(BcardBase dbBCard)
         {
             InitializeComponent();
             this.dbBCard = dbBCard;
-            loadLbSelectUser();
+            loadUserList();
         }
 
         private void btSelect_Click(object sender, EventArgs e)
         {
-            string nameUser;
-            nameUser = lbSelectUser.Items[lbSelectUser.SelectedIndex].ToString();
-            PassingDataSupport.dataSelectUser(nameUser); // вызвать событие "выбор пользователя"
+            string i = dataGridView.CurrentRow.Cells[0].Value.ToString(); // взять индекс из 0 ячейки
+            set.user = i;
+            set.Save();
             Close();
         }
 
@@ -38,16 +40,16 @@ namespace BusinessCardsBase
             Close();
         }
 
-        void loadLbSelectUser()
+        void loadUserList()
         {
             var list = from lst in dbBCard.Managers
-                         select new { fname = lst.Fname, lname = lst.Lname, id = lst.Id };
+                       select new { id = lst.Id, fname = lst.Fname, lname = lst.Lname };
 
-            foreach (var l in list)
-            {
-                lbSelectUser.Items.Add(l.fname + " " + l.lname);
-            }
-                
+            dataGridView.DataSource = list;
+
+            dataGridView.Columns[0].Visible = false;
+            dataGridView.Columns[1].HeaderText = "Имя";
+            dataGridView.Columns[2].HeaderText = "Фамилия";
         }
     }
 }

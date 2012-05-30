@@ -15,6 +15,7 @@ namespace BusinessCardsBase
         #region field
 
         BcardBase dbBCard = new BcardBase(@"Data Source=.\SQLEXPRESS;Initial Catalog=BcardBase;Integrated Security=True");
+        Properties.Settings set = Properties.Settings.Default;
 
         #endregion
 
@@ -22,13 +23,15 @@ namespace BusinessCardsBase
 
         public MainFormBase()
         {
-            PassingDataSupport.dataSelectUser = new PassingDataSupport.ofSelectUser(this.changeUser); // event selectUser
+            //PassingDataSupport.dataSelectUser = new PassingDataSupport.ofSelectUser(this.changeUser); // event selectUser
             GlobalEvents.eventReload += new GlobalEvents.reloadDataGrid(this.loadDataTable); // event load dataGridView
             GlobalEvents.eventSubmit = new GlobalEvents.submitChangeBase(this.submitChange); // event сохранить изменение базы
+            set.PropertyChanged += new PropertyChangedEventHandler(this.set_PropertyChanged);
 
             InitializeComponent();
 
-            GlobalEvents.eventReload("MainFormBase"); // загрузить таблицу
+            loadDataTable("MainFormBase");
+            loadUser();
         }
 
         #endregion
@@ -62,7 +65,8 @@ namespace BusinessCardsBase
 
         private void toolStripBtUpdate_Click(object sender, EventArgs e)
         {
-            GlobalEvents.eventReload("MainFormBase"); // reload таблицы
+            loadDataTable("MainFormBase");
+            //GlobalEvents.eventReload("MainFormBase"); // reload таблицы
         }
 
         #endregion
@@ -78,40 +82,64 @@ namespace BusinessCardsBase
             frmUS.Show();
         }
 
-        // для события сменить пользователя
-        void changeUser(string name)
+        // загрузить пользователя
+        void loadUser()
         {
+            string name = null;
+
+            var user = from u in dbBCard.Managers
+                       where u.Id == set.user
+                       select u;
+            
+            foreach (var u in user)
+            {
+                name += u.Fname + " " + u.Lname;
+            }
+
             statusStripLbUserSelect.Text = name;
         }
+
 
         // load / reload таблицы
         void loadDataTable(string title)
         {
             if (title == "MainFormBase")
             {
+                DataGridView.DataSource = null;
+                DataGridView.Columns.Clear();
+                /*----------------------------------*/
                 var dgView = from d in dbBCard.Bcards
                              select new
                              {
                                  guid = d.GuId,
                                  date = d.Date,
                                  manager = d.Manager,
-                                 client  = d.Client,
+                                 client = d.Client,
                                  namefile = d.NameFile,
                                  status = d.Status
                              };
 
                 DataGridView.DataSource = dgView;
 
-                //DataGridView.Columns[0].Visible = false;
+                DataGridView.Columns[0].Visible = false;
+                DataGridView.Columns[0].HeaderText = "guid";
                 DataGridView.Columns[1].HeaderText = "Дата приема";
                 DataGridView.Columns[2].HeaderText = "Менеджер";
                 DataGridView.Columns[3].HeaderText = "Заказчик";
                 DataGridView.Columns[4].HeaderText = "Название";
                 DataGridView.Columns[5].HeaderText = "Статус";
 
-                //сортировка по 2 столбцу
-                DataGridView.Sort(DataGridView.Columns[1], ListSortDirection.Ascending);
+                //сортировка по 2 столбцу 
+                //DataGridView.Sort(DataGridView.Columns[1], ListSortDirection.Ascending);
+                addEditButton();
+                addDeleteButton();
             }
+        }
+
+        // изменение пользователя
+        void set_PropertyChanged(object sender, EventArgs e)
+        {
+            loadUser();
         }
 
         // сохранение изменений в базе
@@ -127,6 +155,65 @@ namespace BusinessCardsBase
             }
 
             GlobalEvents.eventReload(oftitle);
+        }
+
+        #endregion
+
+        #region test
+   
+        DataGridViewButtonColumn editButton;
+        DataGridViewButtonColumn deleteButton;
+
+        void addEditButton()
+        {
+            editButton = new DataGridViewButtonColumn();
+            editButton.HeaderText = "Edit";
+            editButton.Text = "Edit";
+            editButton.UseColumnTextForButtonValue = true;
+            editButton.Width = 80;
+            DataGridView.Columns.Insert(6, editButton);
+        }
+
+        void addDeleteButton()
+        {
+            deleteButton = new DataGridViewButtonColumn();
+            deleteButton.HeaderText = "Delete";
+            deleteButton.Text = "Delete";
+            deleteButton.UseColumnTextForButtonValue = true;
+            deleteButton.Width = 80;
+            DataGridView.Columns.Insert(7, deleteButton);
+        }
+
+        private void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int currentRow = int.Parse(e.RowIndex.ToString());
+
+            if (DataGridView.Columns[e.ColumnIndex] == deleteButton)
+            {
+                Guid i = (Guid)DataGridView[0, currentRow].Value; // взять индекс удаляемой строки из 0 ячейки
+                System.Diagnostics.Debug.WriteLine(DataGridView[0, currentRow].Value);
+                var delId = from d in dbBCard.Bcards
+                            where d.GuId == i
+                            select d;
+
+                foreach (var d in delId)
+                    dbBCard.Bcards.DeleteOnSubmit(d); // выполнение запроса удалить
+
+                GlobalEvents.eventSubmit("MainFormBase");
+            }
+        }
+
+        // переделать на клик
+        private void DataGridView_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+                DataGridView.Rows[e.RowIndex].Selected = true;
+        }
+
+        private void DataGridView_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+                DataGridView.Rows[e.RowIndex].Selected = false;
         }
 
         #endregion

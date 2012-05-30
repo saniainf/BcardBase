@@ -28,21 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbSelectUser = new System.Windows.Forms.ListBox();
             this.btSelect = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lbSelectUser
-            // 
-            this.lbSelectUser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbSelectUser.FormattingEnabled = true;
-            this.lbSelectUser.Location = new System.Drawing.Point(12, 12);
-            this.lbSelectUser.Name = "lbSelectUser";
-            this.lbSelectUser.Size = new System.Drawing.Size(324, 134);
-            this.lbSelectUser.TabIndex = 0;
             // 
             // btSelect
             // 
@@ -66,14 +56,22 @@
             this.btCancel.UseVisualStyleBackColor = true;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
+            // dataGridView
+            // 
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(323, 134);
+            this.dataGridView.TabIndex = 3;
+            // 
             // frmSelectUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(348, 185);
+            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.btSelect);
-            this.Controls.Add(this.lbSelectUser);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(364, 223);
@@ -81,14 +79,15 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Выбор пользователя";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox lbSelectUser;
         private System.Windows.Forms.Button btSelect;
         private System.Windows.Forms.Button btCancel;
+        private System.Windows.Forms.DataGridView dataGridView;
     }
 }

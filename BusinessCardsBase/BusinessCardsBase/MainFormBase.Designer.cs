@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormBase));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.menuStripService = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripServiceMangerBase = new System.Windows.Forms.ToolStripMenuItem();
@@ -240,15 +241,23 @@
             // 
             // DataGridView
             // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            this.DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataGridView.Location = new System.Drawing.Point(0, 49);
+            this.DataGridView.MultiSelect = false;
             this.DataGridView.Name = "DataGridView";
+            this.DataGridView.ReadOnly = true;
             this.DataGridView.RowHeadersVisible = false;
+            this.DataGridView.RowTemplate.ReadOnly = true;
+            this.DataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridView.Size = new System.Drawing.Size(734, 441);
             this.DataGridView.TabIndex = 3;
+            this.DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
             // 
             // MainFormBase
             // 
