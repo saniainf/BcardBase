@@ -31,11 +31,14 @@
             this.tbId = new System.Windows.Forms.TextBox();
             this.tbLastName = new System.Windows.Forms.TextBox();
             this.tbFirstName = new System.Windows.Forms.TextBox();
-            this.lbFirstName = new System.Windows.Forms.Label();
-            this.lbLastName = new System.Windows.Forms.Label();
-            this.lbId = new System.Windows.Forms.Label();
+            this.lblFirstName = new System.Windows.Forms.Label();
+            this.lblLastName = new System.Windows.Forms.Label();
+            this.lblId = new System.Windows.Forms.Label();
             this.btAdd = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
+            this.lblColor = new System.Windows.Forms.Label();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.btSelectColor = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbId
@@ -67,36 +70,36 @@
             this.tbFirstName.TabIndex = 0;
             this.tbFirstName.TextChanged += new System.EventHandler(this.tbFirstName_TextChanged);
             // 
-            // lbFirstName
+            // lblFirstName
             // 
-            this.lbFirstName.AutoSize = true;
-            this.lbFirstName.Location = new System.Drawing.Point(7, 14);
-            this.lbFirstName.Name = "lbFirstName";
-            this.lbFirstName.Size = new System.Drawing.Size(29, 13);
-            this.lbFirstName.TabIndex = 3;
-            this.lbFirstName.Text = "Имя";
+            this.lblFirstName.AutoSize = true;
+            this.lblFirstName.Location = new System.Drawing.Point(7, 14);
+            this.lblFirstName.Name = "lblFirstName";
+            this.lblFirstName.Size = new System.Drawing.Size(29, 13);
+            this.lblFirstName.TabIndex = 3;
+            this.lblFirstName.Text = "Имя";
             // 
-            // lbLastName
+            // lblLastName
             // 
-            this.lbLastName.AutoSize = true;
-            this.lbLastName.Location = new System.Drawing.Point(6, 40);
-            this.lbLastName.Name = "lbLastName";
-            this.lbLastName.Size = new System.Drawing.Size(56, 13);
-            this.lbLastName.TabIndex = 4;
-            this.lbLastName.Text = "Фамилия";
+            this.lblLastName.AutoSize = true;
+            this.lblLastName.Location = new System.Drawing.Point(6, 40);
+            this.lblLastName.Name = "lblLastName";
+            this.lblLastName.Size = new System.Drawing.Size(56, 13);
+            this.lblLastName.TabIndex = 4;
+            this.lblLastName.Text = "Фамилия";
             // 
-            // lbId
+            // lblId
             // 
-            this.lbId.AutoSize = true;
-            this.lbId.Location = new System.Drawing.Point(6, 66);
-            this.lbId.Name = "lbId";
-            this.lbId.Size = new System.Drawing.Size(87, 13);
-            this.lbId.TabIndex = 5;
-            this.lbId.Text = "Идентификатор";
+            this.lblId.AutoSize = true;
+            this.lblId.Location = new System.Drawing.Point(6, 66);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(87, 13);
+            this.lblId.TabIndex = 5;
+            this.lblId.Text = "Идентификатор";
             // 
             // btAdd
             // 
-            this.btAdd.Location = new System.Drawing.Point(99, 91);
+            this.btAdd.Location = new System.Drawing.Point(99, 124);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(75, 23);
             this.btAdd.TabIndex = 6;
@@ -106,7 +109,7 @@
             // 
             // btCancel
             // 
-            this.btCancel.Location = new System.Drawing.Point(181, 91);
+            this.btCancel.Location = new System.Drawing.Point(181, 124);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(75, 23);
             this.btCancel.TabIndex = 7;
@@ -114,16 +117,37 @@
             this.btCancel.UseVisualStyleBackColor = true;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
+            // lblColor
+            // 
+            this.lblColor.AutoSize = true;
+            this.lblColor.Location = new System.Drawing.Point(6, 92);
+            this.lblColor.Name = "lblColor";
+            this.lblColor.Size = new System.Drawing.Size(32, 13);
+            this.lblColor.TabIndex = 5;
+            this.lblColor.Text = "Цвет";
+            // 
+            // btSelectColor
+            // 
+            this.btSelectColor.Location = new System.Drawing.Point(99, 87);
+            this.btSelectColor.Name = "btSelectColor";
+            this.btSelectColor.Size = new System.Drawing.Size(157, 23);
+            this.btSelectColor.TabIndex = 8;
+            this.btSelectColor.Text = "Выбрать цвет";
+            this.btSelectColor.UseVisualStyleBackColor = false;
+            this.btSelectColor.Click += new System.EventHandler(this.btSelectColor_Click);
+            // 
             // frmNewManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(266, 123);
+            this.ClientSize = new System.Drawing.Size(266, 158);
+            this.Controls.Add(this.btSelectColor);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.btAdd);
-            this.Controls.Add(this.lbId);
-            this.Controls.Add(this.lbLastName);
-            this.Controls.Add(this.lbFirstName);
+            this.Controls.Add(this.lblColor);
+            this.Controls.Add(this.lblId);
+            this.Controls.Add(this.lblLastName);
+            this.Controls.Add(this.lblFirstName);
             this.Controls.Add(this.tbId);
             this.Controls.Add(this.tbLastName);
             this.Controls.Add(this.tbFirstName);
@@ -143,10 +167,13 @@
         private System.Windows.Forms.TextBox tbId;
         private System.Windows.Forms.TextBox tbLastName;
         private System.Windows.Forms.TextBox tbFirstName;
-        private System.Windows.Forms.Label lbFirstName;
-        private System.Windows.Forms.Label lbLastName;
-        private System.Windows.Forms.Label lbId;
+        private System.Windows.Forms.Label lblFirstName;
+        private System.Windows.Forms.Label lblLastName;
+        private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Button btAdd;
         private System.Windows.Forms.Button btCancel;
+        private System.Windows.Forms.Label lblColor;
+        private System.Windows.Forms.ColorDialog colorDialog;
+        private System.Windows.Forms.Button btSelectColor;
     }
 }

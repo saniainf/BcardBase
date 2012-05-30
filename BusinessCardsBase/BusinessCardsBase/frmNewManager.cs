@@ -18,10 +18,10 @@ namespace BusinessCardsBase
 
         private void btAdd_Click(object sender, EventArgs e)
         {
-            string fn = tbFirstName.Text;
-            string ln = tbLastName.Text;
-            string ids = tbId.Text;
-            PassingDataSupport.dataNewManager(fn, ln, ids);
+            string fn = tbFirstName.Text.Trim();
+            string ln = tbLastName.Text.Trim();
+            string ids = tbId.Text.Trim();
+            PassingDataSupport.dataNewManager(fn, ln, ids, btSelectColor.BackColor);
             Close();
         }
 
@@ -42,14 +42,22 @@ namespace BusinessCardsBase
 
         void idChanged()
         {
-            string fn = tbFirstName.Text.ToLower();
-            string ln = tbLastName.Text.ToLower();
+            string fn = tbFirstName.Text.ToLower().Trim();
+            string ln = tbLastName.Text.ToLower().Trim();
 
             if (fn.Length >=3 && ln.Length >=3)
             {
                 tbId.Text = fn.Substring(0, 3) + ln.Substring(0, 3);
             }
             
+        }
+
+        private void btSelectColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog frmSelectColor = new ColorDialog();
+            frmSelectColor.Color = btSelectColor.BackColor;
+            if (frmSelectColor.ShowDialog() == DialogResult.OK)
+                btSelectColor.BackColor = frmSelectColor.Color;
         }
     }
 }

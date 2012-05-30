@@ -28,7 +28,7 @@ namespace BusinessCardsBase
         public static ofSelectUser dataSelectUser;
 
         // создание нового манагера
-        public delegate void ofNewManager(string fname, string lname, string ids);
+        public delegate void ofNewManager(string fname, string lname, string ids, System.Drawing.Color color);
         public static ofNewManager dataNewManager;
     }
 

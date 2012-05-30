@@ -25,12 +25,14 @@ namespace BusinessCardsBase
 
             GlobalEvents.eventReload += new GlobalEvents.reloadDataGrid(this.loadDataTable); // подписка на загрузку таблицы
             PassingDataSupport.dataNewManager = new PassingDataSupport.ofNewManager(this.newManger); // подписка на данные из NewManager
-            
+
             InitializeComponent();
-            
+
             GlobalEvents.eventReload("frmBaseManagers"); // загрузить таблицу
             dataGridView.Sort(dataGridView.Columns[2], ListSortDirection.Ascending);
         }
+
+        #region events form
 
         // кнопка добавить
         private void btAddManager_Click(object sender, EventArgs e)
@@ -43,7 +45,7 @@ namespace BusinessCardsBase
         // кнопка удалить
         private void btDeleteManager_Click(object sender, EventArgs e)
         {
-            Guid i = (Guid)dataGridView.CurrentRow.Cells[0].Value; // взять индекс из 0 ячейки
+            Guid i = (Guid)dataGridView.CurrentRow.Cells[0].Value; // взять индекс удаляемой строки из 0 ячейки
 
             var delId = from d in dbBCard.Managers
                         where d.GuId == i
@@ -62,8 +64,21 @@ namespace BusinessCardsBase
 
         private void frmBaseManagers_FormClosed(object sender, FormClosedEventArgs e)
         {
-            GlobalEvents.eventReload -= new GlobalEvents.reloadDataGrid(this.loadDataTable);
+            // отписаться на reload таблицы
+            GlobalEvents.eventReload -= this.loadDataTable;
         }
+
+        private void dataGridView_Sorted(object sender, EventArgs e)
+        {
+            setColorRow();
+        }
+
+        private void dataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            setColorRow();
+        }
+
+        #endregion
 
         #region supportMethods
 
@@ -73,7 +88,7 @@ namespace BusinessCardsBase
             if (title == "frmBaseManagers")
             {
                 var dgView = from d in dbBCard.Managers
-                             select new { guid = d.GuId, fname = d.Fname, lname = d.Lname, id = d.Id };
+                             select new { guid = d.GuId, fname = d.Fname, lname = d.Lname, id = d.Id, Color = d.Color };
 
                 dataGridView.DataSource = dgView;
 
@@ -81,11 +96,15 @@ namespace BusinessCardsBase
                 dataGridView.Columns[1].HeaderText = "Имя";
                 dataGridView.Columns[2].HeaderText = "Фамилия";
                 dataGridView.Columns[3].HeaderText = "Идентификатор";
+                dataGridView.Columns[4].HeaderText = "Цвет";
+
+                dataGridView.Sort(dataGridView.Columns[2], ListSortDirection.Ascending);
             }
+
         }
 
         // добавить нового манагера
-        void newManger(string fn, string ln, string ids)
+        void newManger(string fn, string ln, string ids, System.Drawing.Color color)
         {
             Guid key = Guid.NewGuid();
 
@@ -93,13 +112,24 @@ namespace BusinessCardsBase
             {
                 Fname = fn,
                 Lname = ln,
-                Color = null,
-                Id  = ids,
+                Color = color.ToArgb().ToString(),
+                Id = ids,
                 GuId = key
             };
 
             dbBCard.Managers.InsertOnSubmit(addClass);
             GlobalEvents.eventSubmit("frmBaseManagers");
+        }
+
+        // закрасить строки по цвету манагера
+        void setColorRow()
+        {
+            for (int i = 0; i < dataGridView.RowCount; i++)
+            {
+                dataGridView[4, i].Style.BackColor = Color.White;
+                Color color = Color.FromArgb(int.Parse(dataGridView[4, i].Value.ToString()));
+                dataGridView[4, i].Style.BackColor = color;
+            }
         }
 
         #endregion
