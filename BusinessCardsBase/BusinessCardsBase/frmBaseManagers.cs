@@ -126,7 +126,6 @@ namespace BusinessCardsBase
         {
             for (int i = 0; i < dataGridView.RowCount; i++)
             {
-                dataGridView[4, i].Style.BackColor = Color.White;
                 Color color = Color.FromArgb(int.Parse(dataGridView[4, i].Value.ToString()));
                 dataGridView[4, i].Style.BackColor = color;
             }

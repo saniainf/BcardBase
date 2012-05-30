@@ -241,10 +241,12 @@
             // DataGridView
             // 
             this.DataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataGridView.Location = new System.Drawing.Point(0, 49);
             this.DataGridView.Name = "DataGridView";
+            this.DataGridView.RowHeadersVisible = false;
             this.DataGridView.Size = new System.Drawing.Size(734, 441);
             this.DataGridView.TabIndex = 3;
             // 
