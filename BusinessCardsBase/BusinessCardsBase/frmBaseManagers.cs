@@ -65,6 +65,7 @@ namespace BusinessCardsBase
         {
             // отписаться на reload таблицы
             GlobalEvents.eventReload -= this.loadDataTable;
+            GlobalEvents.eventReload("MainFormBase");
         }
 
         private void dataGridView_Sorted(object sender, EventArgs e)

@@ -132,7 +132,7 @@
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusStripLbUser,
             this.statusStripLbUserSelect});
-            this.statusStrip.Location = new System.Drawing.Point(0, 490);
+            this.statusStrip.Location = new System.Drawing.Point(0, 487);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(734, 22);
             this.statusStrip.TabIndex = 1;
@@ -192,8 +192,10 @@
             // 
             // toolStripComBoxManager
             // 
+            this.toolStripComBoxManager.MaxDropDownItems = 20;
             this.toolStripComBoxManager.Name = "toolStripComBoxManager";
             this.toolStripComBoxManager.Size = new System.Drawing.Size(121, 25);
+            this.toolStripComBoxManager.TextChanged += new System.EventHandler(this.toolStripComBoxManager_TextChanged);
             // 
             // toolStripSp2
             // 
@@ -253,11 +255,10 @@
             this.DataGridView.MultiSelect = false;
             this.DataGridView.Name = "DataGridView";
             this.DataGridView.ReadOnly = true;
-            this.DataGridView.RowHeadersVisible = false;
             this.DataGridView.RowTemplate.ReadOnly = true;
             this.DataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView.Size = new System.Drawing.Size(734, 441);
+            this.DataGridView.Size = new System.Drawing.Size(734, 438);
             this.DataGridView.TabIndex = 3;
             this.DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
             this.DataGridView.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellMouseEnter);
@@ -267,13 +268,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 512);
+            this.ClientSize = new System.Drawing.Size(734, 509);
             this.Controls.Add(this.DataGridView);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
-            this.MinimumSize = new System.Drawing.Size(750, 550);
+            this.MinimumSize = new System.Drawing.Size(750, 547);
             this.Name = "MainFormBase";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "База визиток";

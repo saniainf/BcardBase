@@ -38,7 +38,7 @@ namespace BusinessCardsBase
 
             Bcard addClass = new Bcard // класс добавления в таблицу
             {
-                Manager = "default",
+                Manager = cbManager.Text,
                 Client = "default",
                 NameFile = "default",
                 GuId = key,
@@ -46,6 +46,7 @@ namespace BusinessCardsBase
             };
 
             dbBCard.Bcards.InsertOnSubmit(addClass);
+
             GlobalEvents.eventSubmit("MainFormBase");
             Close();
         }

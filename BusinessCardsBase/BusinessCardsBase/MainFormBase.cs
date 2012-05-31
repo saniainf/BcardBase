@@ -23,14 +23,18 @@ namespace BusinessCardsBase
 
         public MainFormBase()
         {
-            //PassingDataSupport.dataSelectUser = new PassingDataSupport.ofSelectUser(this.changeUser); // event selectUser
             GlobalEvents.eventReload += new GlobalEvents.reloadDataGrid(this.loadDataTable); // event load dataGridView
             GlobalEvents.eventSubmit = new GlobalEvents.submitChangeBase(this.submitChange); // event сохранить изменение базы
             set.PropertyChanged += new PropertyChangedEventHandler(this.set_PropertyChanged);
 
             InitializeComponent();
 
+            loadTestTable();
+
+            // загрузка таблицы
             loadDataTable("MainFormBase");
+
+            // загрузка пользователя
             loadUser();
         }
 
@@ -59,15 +63,13 @@ namespace BusinessCardsBase
         {
             frmAddProduct frmAP = new frmAddProduct(dbBCard);
             frmAP.ShowInTaskbar = false;
-            //frmAP.Owner = this;
-            //frmAP.Show();
             frmAP.ShowDialog(this);
         }
 
         private void toolStripBtUpdate_Click(object sender, EventArgs e)
         {
-            loadDataTable("MainFormBase");
-            //GlobalEvents.eventReload("MainFormBase"); // reload таблицы
+            //loadDataTable("MainFormBase");
+            this.DataGridView.Update();
         }
 
         #endregion
@@ -94,10 +96,17 @@ namespace BusinessCardsBase
 
             foreach (var u in user)
             {
-                name += u.Fname + " " + u.Lname;
+                name = u.Fname + " " + u.Lname;
             }
 
             statusStripLbUserSelect.Text = name;
+
+            foreach (var u in user)
+            {
+                name = u.Lname;
+            }
+
+            toolStripComBoxManager.SelectedItem = name;
         }
 
         // изменение пользователя
@@ -125,11 +134,12 @@ namespace BusinessCardsBase
 
         #region loadTable
 
-        // load / reload таблицы
+        // load / reload базы
         void loadDataTable(string title)
         {
             if (title == "MainFormBase")
             {
+                DataGridView.DataMember = null;
                 DataGridView.DataSource = null;
                 DataGridView.Columns.Clear();
                 /*----------------------------------*/
@@ -155,11 +165,14 @@ namespace BusinessCardsBase
                 DataGridView.Columns[5].HeaderText = "Статус";
 
                 DataGridView.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                
+
                 //сортировка по столбцу (так вроде не косячит)
-                this.DataGridView.Sort(this.DataGridView.Columns["date"], ListSortDirection.Ascending);
-                addEditButton();
-                addDeleteButton();
+                this.DataGridView.Sort(this.DataGridView.Columns["date"], ListSortDirection.Descending);
+                //addEditButton();
+                //addDeleteButton();
+                /*--------------------------------------*/
+                loadListManager();
+                sortDataGrid();
             }
         }
 
@@ -198,7 +211,7 @@ namespace BusinessCardsBase
             if (DataGridView.Columns[e.ColumnIndex] == deleteButton)
             {
                 Guid i = (Guid)DataGridView[currentColumn, currentRow].Value; // взять индекс удаляемой строки из 0 ячейки
-                System.Diagnostics.Debug.WriteLine(DataGridView[currentColumn, currentRow].Value);
+
                 var delId = from d in dbBCard.Bcards
                             where d.GuId == i
                             select d;
@@ -207,6 +220,57 @@ namespace BusinessCardsBase
                     dbBCard.Bcards.DeleteOnSubmit(d); // выполнение запроса удалить
 
                 GlobalEvents.eventSubmit("MainFormBase");
+            }
+        }
+
+        #endregion
+
+        #region select sort user
+
+        void loadListManager()
+        {
+            toolStripComBoxManager.Items.Clear();
+            /*-------------------------------*/
+            var managerSelect = from ms in dbBCard.Managers
+                                select new { lname = ms.Lname };
+
+            foreach (var ms in managerSelect)
+                toolStripComBoxManager.Items.Add(ms.lname);
+
+            toolStripComBoxManager.Items.Add("Все");
+        }
+
+        void sortDataGrid()
+        {
+            //for (int i = 1; i < this.DataGridView.RowCount; i++)
+            //{
+            //    int iCol = this.DataGridView.Columns["manager"].DisplayIndex;
+            //    string name = this.DataGridView[iCol, i].Value.ToString();
+
+            //    if (name == toolStripComBoxManager.Text)
+            //    {
+            //        this.DataGridView.Rows[i].Visible = true;
+            //    }
+            //    else
+            //    {
+            //        this.DataGridView.Rows[i].Visible = false;
+            //    }
+            //}
+
+            foreach (DataGridViewRow row in DataGridView.Rows)
+            {
+                int iCol = this.DataGridView.Columns["manager"].DisplayIndex;
+                string name = this.DataGridView[iCol, i].Value.ToString();
+
+                if (name == toolStripComBoxManager.Text)
+
+                {
+                    this.DataGridView.Rows[i].Visible = true;
+                }
+                else
+                {
+                    this.DataGridView.Rows[i].Visible = false;
+                }
             }
         }
 
@@ -227,6 +291,16 @@ namespace BusinessCardsBase
                 DataGridView.Rows[e.RowIndex].Selected = false;
         }
 
+        void loadTestTable()
+        {
+            DataGridView.DataSource = dbBCard;
+        }
+
         #endregion
+
+        private void toolStripComBoxManager_TextChanged(object sender, EventArgs e)
+        {
+            sortDataGrid();
+        }
     }
 }
