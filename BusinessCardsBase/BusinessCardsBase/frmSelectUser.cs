@@ -50,6 +50,9 @@ namespace BusinessCardsBase
             dataGridView.Columns[0].Visible = false;
             dataGridView.Columns[1].HeaderText = "Имя";
             dataGridView.Columns[2].HeaderText = "Фамилия";
+
+            //сортировка по столбцу (так вроде не косячит)
+            this.dataGridView.Sort(this.dataGridView.Columns["lname"], ListSortDirection.Ascending);
         }
     }
 }

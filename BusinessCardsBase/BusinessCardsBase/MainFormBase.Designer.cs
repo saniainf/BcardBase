@@ -260,6 +260,8 @@
             this.DataGridView.Size = new System.Drawing.Size(734, 441);
             this.DataGridView.TabIndex = 3;
             this.DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
+            this.DataGridView.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellMouseEnter);
+            this.DataGridView.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellMouseLeave);
             // 
             // MainFormBase
             // 

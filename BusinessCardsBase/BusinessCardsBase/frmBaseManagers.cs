@@ -29,7 +29,6 @@ namespace BusinessCardsBase
             InitializeComponent();
 
             GlobalEvents.eventReload("frmBaseManagers"); // загрузить таблицу
-            //dataGridView.Sort(dataGridView.Columns[2], ListSortDirection.Ascending);
         }
 
         #region events form
@@ -98,7 +97,8 @@ namespace BusinessCardsBase
                 dataGridView.Columns[3].HeaderText = "Идентификатор";
                 dataGridView.Columns[4].HeaderText = "Цвет";
 
-                dataGridView.Sort(dataGridView.Columns[2], ListSortDirection.Ascending);
+                //сортировка по столбцу (так вроде не косячит)
+                this.dataGridView.Sort(this.dataGridView.Columns["lname"], ListSortDirection.Ascending);
             }
 
         }

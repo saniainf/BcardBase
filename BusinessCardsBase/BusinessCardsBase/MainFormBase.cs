@@ -59,8 +59,9 @@ namespace BusinessCardsBase
         {
             frmAddProduct frmAP = new frmAddProduct(dbBCard);
             frmAP.ShowInTaskbar = false;
-            frmAP.Owner = this;
-            frmAP.Show();
+            //frmAP.Owner = this;
+            //frmAP.Show();
+            frmAP.ShowDialog(this);
         }
 
         private void toolStripBtUpdate_Click(object sender, EventArgs e)
@@ -154,8 +155,9 @@ namespace BusinessCardsBase
                 DataGridView.Columns[5].HeaderText = "Статус";
 
                 DataGridView.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                //сортировка по 2 столбцу 
-                //DataGridView.Sort(DataGridView.Columns[1], ListSortDirection.Ascending);
+                
+                //сортировка по столбцу (так вроде не косячит)
+                this.DataGridView.Sort(this.DataGridView.Columns["date"], ListSortDirection.Ascending);
                 addEditButton();
                 addDeleteButton();
             }
@@ -212,7 +214,7 @@ namespace BusinessCardsBase
 
         #region test
 
-        // переделать на клик
+        // переделать ?
         private void DataGridView_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)

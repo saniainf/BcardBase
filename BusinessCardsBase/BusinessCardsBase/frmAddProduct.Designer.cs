@@ -36,13 +36,14 @@
             this.lblManager = new System.Windows.Forms.Label();
             this.dateGet = new System.Windows.Forms.DateTimePicker();
             this.lblDateGet = new System.Windows.Forms.Label();
-            this.tbAmount = new System.Windows.Forms.TextBox();
             this.lblAmount = new System.Windows.Forms.Label();
             this.lblBack = new System.Windows.Forms.Label();
             this.cbBack = new System.Windows.Forms.CheckBox();
             this.btAdd = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
             this.pnlDragDrop = new System.Windows.Forms.Panel();
+            this.numAmount = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numAmount)).BeginInit();
             this.SuspendLayout();
             // 
             // lbTitleFile
@@ -124,15 +125,6 @@
             this.lblDateGet.TabIndex = 1;
             this.lblDateGet.Text = "Дата приема";
             // 
-            // tbAmount
-            // 
-            this.tbAmount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbAmount.Location = new System.Drawing.Point(86, 185);
-            this.tbAmount.Name = "tbAmount";
-            this.tbAmount.Size = new System.Drawing.Size(141, 20);
-            this.tbAmount.TabIndex = 4;
-            // 
             // lblAmount
             // 
             this.lblAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -149,9 +141,9 @@
             this.lblBack.AutoSize = true;
             this.lblBack.Location = new System.Drawing.Point(12, 214);
             this.lblBack.Name = "lblBack";
-            this.lblBack.Size = new System.Drawing.Size(40, 13);
+            this.lblBack.Size = new System.Drawing.Size(44, 13);
             this.lblBack.TabIndex = 1;
-            this.lblBack.Text = "Тираж";
+            this.lblBack.Text = "Оборот";
             // 
             // cbBack
             // 
@@ -170,7 +162,7 @@
             this.btAdd.Location = new System.Drawing.Point(184, 235);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(75, 23);
-            this.btAdd.TabIndex = 6;
+            this.btAdd.TabIndex = 0;
             this.btAdd.Text = "Добавить";
             this.btAdd.UseVisualStyleBackColor = true;
             this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
@@ -196,16 +188,30 @@
             this.pnlDragDrop.Size = new System.Drawing.Size(106, 121);
             this.pnlDragDrop.TabIndex = 8;
             // 
+            // numAmount
+            // 
+            this.numAmount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.numAmount.Location = new System.Drawing.Point(86, 185);
+            this.numAmount.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.numAmount.Name = "numAmount";
+            this.numAmount.Size = new System.Drawing.Size(141, 20);
+            this.numAmount.TabIndex = 9;
+            // 
             // frmAddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(352, 264);
+            this.Controls.Add(this.numAmount);
             this.Controls.Add(this.pnlDragDrop);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.btAdd);
             this.Controls.Add(this.cbBack);
-            this.Controls.Add(this.tbAmount);
             this.Controls.Add(this.dateGet);
             this.Controls.Add(this.cbManager);
             this.Controls.Add(this.cbClient);
@@ -216,13 +222,12 @@
             this.Controls.Add(this.lblClient);
             this.Controls.Add(this.lblTitleFile);
             this.Controls.Add(this.lbTitleFile);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(368, 302);
             this.Name = "frmAddProduct";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавить изделие";
+            ((System.ComponentModel.ISupportInitialize)(this.numAmount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,12 +243,12 @@
         private System.Windows.Forms.Label lblManager;
         private System.Windows.Forms.DateTimePicker dateGet;
         private System.Windows.Forms.Label lblDateGet;
-        private System.Windows.Forms.TextBox tbAmount;
         private System.Windows.Forms.Label lblAmount;
         private System.Windows.Forms.Label lblBack;
         private System.Windows.Forms.CheckBox cbBack;
         private System.Windows.Forms.Button btAdd;
         private System.Windows.Forms.Button btCancel;
         private System.Windows.Forms.Panel pnlDragDrop;
+        private System.Windows.Forms.NumericUpDown numAmount;
     }
 }
