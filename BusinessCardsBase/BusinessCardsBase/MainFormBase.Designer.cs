@@ -255,6 +255,7 @@
             this.DataGridView.MultiSelect = false;
             this.DataGridView.Name = "DataGridView";
             this.DataGridView.ReadOnly = true;
+            this.DataGridView.RowHeadersVisible = false;
             this.DataGridView.RowTemplate.ReadOnly = true;
             this.DataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

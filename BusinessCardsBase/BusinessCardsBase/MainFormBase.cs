@@ -29,12 +29,10 @@ namespace BusinessCardsBase
 
             InitializeComponent();
 
-            loadTestTable();
-
             // загрузка таблицы
             loadDataTable("MainFormBase");
 
-            // загрузка пользователя
+             // загрузка пользователя
             loadUser();
         }
 
@@ -68,8 +66,7 @@ namespace BusinessCardsBase
 
         private void toolStripBtUpdate_Click(object sender, EventArgs e)
         {
-            //loadDataTable("MainFormBase");
-            this.DataGridView.Update();
+            loadDataTable("MainFormBase");
         }
 
         #endregion
@@ -168,8 +165,8 @@ namespace BusinessCardsBase
 
                 //сортировка по столбцу (так вроде не косячит)
                 this.DataGridView.Sort(this.DataGridView.Columns["date"], ListSortDirection.Descending);
-                //addEditButton();
-                //addDeleteButton();
+                addEditButton();
+                addDeleteButton();
                 /*--------------------------------------*/
                 loadListManager();
                 sortDataGrid();
@@ -242,34 +239,27 @@ namespace BusinessCardsBase
 
         void sortDataGrid()
         {
-            //for (int i = 1; i < this.DataGridView.RowCount; i++)
-            //{
-            //    int iCol = this.DataGridView.Columns["manager"].DisplayIndex;
-            //    string name = this.DataGridView[iCol, i].Value.ToString();
-
-            //    if (name == toolStripComBoxManager.Text)
-            //    {
-            //        this.DataGridView.Rows[i].Visible = true;
-            //    }
-            //    else
-            //    {
-            //        this.DataGridView.Rows[i].Visible = false;
-            //    }
-            //}
-
-            foreach (DataGridViewRow row in DataGridView.Rows)
+            if (toolStripComBoxManager.Text == "Все")
             {
-                int iCol = this.DataGridView.Columns["manager"].DisplayIndex;
-                string name = this.DataGridView[iCol, i].Value.ToString();
-
-                if (name == toolStripComBoxManager.Text)
-
+                foreach (DataGridViewRow row in DataGridView.Rows)
                 {
-                    this.DataGridView.Rows[i].Visible = true;
+                    row.Visible = true;
                 }
-                else
+            }
+            else
+            {
+                foreach (DataGridViewRow row in DataGridView.Rows)
                 {
-                    this.DataGridView.Rows[i].Visible = false;
+                    int iCol = this.DataGridView.Columns["manager"].DisplayIndex;
+                    string name = row.Cells[iCol].Value.ToString();
+                    if (name == toolStripComBoxManager.Text)
+                    {
+                        row.Visible = true;
+                    }
+                    else
+                    {
+                        row.Visible = false;
+                    }
                 }
             }
         }
@@ -289,11 +279,6 @@ namespace BusinessCardsBase
         {
             if (e.RowIndex >= 0)
                 DataGridView.Rows[e.RowIndex].Selected = false;
-        }
-
-        void loadTestTable()
-        {
-            DataGridView.DataSource = dbBCard;
         }
 
         #endregion
