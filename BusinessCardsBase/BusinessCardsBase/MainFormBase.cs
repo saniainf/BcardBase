@@ -32,7 +32,7 @@ namespace BusinessCardsBase
             // загрузка таблицы
             loadDataTable("MainFormBase");
 
-             // загрузка пользователя
+            // загрузка пользователя
             loadUser();
         }
 
@@ -134,6 +134,10 @@ namespace BusinessCardsBase
         // load / reload базы
         void loadDataTable(string title)
         {
+            DataGridViewButtonColumn editButton;
+            DataGridViewButtonColumn deleteButton;
+            //IQueryable<Bcard> dgView;
+
             if (title == "MainFormBase")
             {
                 DataGridView.DataMember = null;
@@ -143,17 +147,19 @@ namespace BusinessCardsBase
                 var dgView = from d in dbBCard.Bcards
                              select new
                              {
-                                 guid = d.GuId,
-                                 date = d.Date,
-                                 manager = d.Manager,
-                                 client = d.Client,
-                                 namefile = d.NameFile,
-                                 status = d.Status
+                                 GuId = d.GuId,
+                                 Date = d.Date,
+                                 Manager = d.Manager,
+                                 Client = d.Client,
+                                 NameFile = d.NameFile,
+                                 Status = d.Status
                              };
+                DataTable dt = new DataTable();
+                dt.Load(dgView.AsEnumerable());
 
                 DataGridView.DataSource = dgView;
 
-                DataGridView.Columns[0].Visible = false;
+                //DataGridView.Columns[0].Visible = false;
                 DataGridView.Columns[0].HeaderText = "guid";
                 DataGridView.Columns[1].HeaderText = "Дата приема";
                 DataGridView.Columns[2].HeaderText = "Менеджер";
@@ -161,15 +167,39 @@ namespace BusinessCardsBase
                 DataGridView.Columns[4].HeaderText = "Название";
                 DataGridView.Columns[5].HeaderText = "Статус";
 
-                DataGridView.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                //DataGridView.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 //сортировка по столбцу (так вроде не косячит)
                 this.DataGridView.Sort(this.DataGridView.Columns["date"], ListSortDirection.Descending);
                 addEditButton();
                 addDeleteButton();
                 /*--------------------------------------*/
-                loadListManager();
-                sortDataGrid();
+                editButton = new DataGridViewButtonColumn();
+                editButton.HeaderText = "Редактировать";
+                editButton.Text = "Редактировать";
+                editButton.UseColumnTextForButtonValue = true;
+                editButton.Width = 80;
+                editButton.Name = "editButton";
+                DataGridView.Columns.Insert(6, editButton);
+                /*           */
+                deleteButton = new DataGridViewButtonColumn();
+                deleteButton.HeaderText = "Удалить";
+                deleteButton.Text = "Удалить";
+                deleteButton.UseColumnTextForButtonValue = true;
+                deleteButton.Width = 80;
+                editButton.Name = "deleteButton";
+                DataGridView.Columns.Insert(7, deleteButton);
+                //////////////////////////////////////////////////////////////////////////
+                //DataGridView.Columns["guid"].DisplayIndex = 0;
+                //DataGridView.Columns["date"].DisplayIndex = 1;
+                //DataGridView.Columns["manager"].DisplayIndex = 2;
+                //DataGridView.Columns["client"].DisplayIndex = 3;
+                //DataGridView.Columns["namefile"].DisplayIndex = 4;
+                //DataGridView.Columns["status"].DisplayIndex = 5;
+                //DataGridView.Columns["editButton"].DisplayIndex = 6;
+                //DataGridView.Columns["deleteButton"].DisplayIndex = 7;
+                //loadListManager();
+                //sortDataGrid();
             }
         }
 
@@ -177,47 +207,34 @@ namespace BusinessCardsBase
 
         #region edit/delete buttons
 
-        DataGridViewButtonColumn editButton;
-        DataGridViewButtonColumn deleteButton;
-
         void addEditButton()
         {
-            editButton = new DataGridViewButtonColumn();
-            editButton.HeaderText = "Редактировать";
-            editButton.Text = "Редактировать";
-            editButton.UseColumnTextForButtonValue = true;
-            editButton.Width = 80;
-            DataGridView.Columns.Insert(6, editButton);
+
         }
 
         void addDeleteButton()
         {
-            deleteButton = new DataGridViewButtonColumn();
-            deleteButton.HeaderText = "Удалить";
-            deleteButton.Text = "Удалить";
-            deleteButton.UseColumnTextForButtonValue = true;
-            deleteButton.Width = 80;
-            DataGridView.Columns.Insert(7, deleteButton);
+
         }
 
         private void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int currentRow = int.Parse(e.RowIndex.ToString());
-            int currentColumn = DataGridView.Columns["guid"].Index;
+            //int currentRow = int.Parse(e.RowIndex.ToString());
+            //int currentColumn = DataGridView.Columns["guid"].Index;
 
-            if (DataGridView.Columns[e.ColumnIndex] == deleteButton)
-            {
-                Guid i = (Guid)DataGridView[currentColumn, currentRow].Value; // взять индекс удаляемой строки из 0 ячейки
+            //if (DataGridView.Columns[e.ColumnIndex] == deleteButton)
+            //{
+            //    Guid i = (Guid)DataGridView[currentColumn, currentRow].Value; // взять индекс удаляемой строки из 0 ячейки
 
-                var delId = from d in dbBCard.Bcards
-                            where d.GuId == i
-                            select d;
+            //    var delId = from d in dbBCard.Bcards
+            //                where d.GuId == i
+            //                select d;
 
-                foreach (var d in delId)
-                    dbBCard.Bcards.DeleteOnSubmit(d); // выполнение запроса удалить
+            //    foreach (var d in delId)
+            //        dbBCard.Bcards.DeleteOnSubmit(d); // выполнение запроса удалить
 
-                GlobalEvents.eventSubmit("MainFormBase");
-            }
+            //    GlobalEvents.eventSubmit("MainFormBase");
+            //}
         }
 
         #endregion
