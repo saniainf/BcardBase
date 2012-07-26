@@ -154,9 +154,7 @@ namespace BusinessCardsBase
                                  NameFile = d.NameFile,
                                  Status = d.Status
                              };
-                DataTable dt = new DataTable();
-                dt.Load(dgView.AsEnumerable());
-
+           
                 DataGridView.DataSource = dgView;
 
                 //DataGridView.Columns[0].Visible = false;
